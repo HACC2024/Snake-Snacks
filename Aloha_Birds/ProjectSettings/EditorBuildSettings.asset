@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/AR_Marker.unity
     guid: dc8e280a7c1ef3845af53ca5c95c0c33
   - enabled: 1
-    path: Assets/Samples/XR Interaction Toolkit/3.0.4/AR Starter Assets/ARDemoScene.unity
+    path: Assets/Plugins/Samples/XR Interaction Toolkit/3.0.4/AR Starter Assets/ARDemoScene.unity
     guid: da4db6c21a88243878fecfe160c1be3b
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6ee72d15cf39dd748a13eac57397b9af,
