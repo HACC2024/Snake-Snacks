@@ -5,17 +5,21 @@ using DG.Tweening;
 
 public class Test_Tween : MonoBehaviour
 {
-    [SerializeField] private Transform Cube;
-    [SerializeField] private float _cycleLength = 6;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject Test1;
+    [SerializeField] private GameObject Test2;
+    public void Stop_Time()
     {
-        transform.DOMove(new Vector3(6, 6, 6), _cycleLength);
+        Time.timeScale = 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Resume_Time()
     {
-        
+        Time.timeScale = 1;
+    }
+
+    private void Update()
+    {
+        Test1.gameObject.transform.Rotate(Vector3.up * 60 * Time.deltaTime);
+        Test2.gameObject.transform.Rotate(Vector3.up * 60 * Time.unscaledDeltaTime);
     }
 }
