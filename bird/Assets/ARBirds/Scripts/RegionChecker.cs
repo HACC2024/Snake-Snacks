@@ -1,23 +1,34 @@
-using UnityEngine;
 using Mapbox.Unity.Map;
 using Mapbox.Unity.Location;
+using Mapbox.Unity.Utilities;
 using Mapbox.Utils;
 using Mapbox.Unity.MeshGeneration.Data;
+using Mapbox.Unity.MeshGeneration.Enums;
+using Mapbox.Unity.MeshGeneration.Components;
 using Mapbox.Unity.MeshGeneration.Interfaces;
 using Mapbox.Unity.SourceLayers;
 using Mapbox.VectorTile.ExtensionMethods;
+using Mapbox.VectorTile;
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
 
 public class RegionChecker : MonoBehaviour
 {
     public AbstractMap map;  // Mapbox map object
-    public Transform player; // Reference to the player position
+    public Transform player;
+    public Vector2d playerLatLon; // Reference to the player position
     private ILocationProvider _locationProvider;
+    public float searchRadius = 5f;
+    private EcosystemType currEco;
+    
 
     // Define ecosystem types
     public enum EcosystemType
     {
         Beach,
-        Forest,
+        Park,
         Mountain,
         Urban,
         Water,
@@ -32,48 +43,93 @@ public class RegionChecker : MonoBehaviour
     void Update()
     {
         // Get the player's current GPS coordinates
-        Vector2d playerLatLon = _locationProvider.CurrentLocation.LatitudeLongitude;
-        
-        // EcosystemType ecosystem = GetEcosystemType(playerLocation);
-        // Debug.Log("Current Ecosystem: " + ecosystem);
+        playerLatLon = _locationProvider.CurrentLocation.LatitudeLongitude;
+        if(isTileLoaded())
+        {
+            if(currEco != GetEcosystemType())
+            {
+                GetEcosystemType();
+                Debug.Log(currEco);
+            }
+        }
     }
 
-    public float GetTerrainElevation(Vector2 playerLatLon)
+    EcosystemType CheckMountain(Vector2d playerLatLon)
     {
-        Vector2d latLon = new Vector2d(playerLatLon.x, playerLatLon.y);
-        float elevation = map.QueryElevationInMetersAt(latLon);
-        return elevation;
+        float elevation = map.QueryElevationInMetersAt(playerLatLon);
+        // height of a mountain in meters
+        if(elevation > 2500)
+        {
+            currEco = EcosystemType.Mountain;
+            return currEco;
+        }
+        return EcosystemType.Undefined;
     }
 
-    // EcosystemType GetEcosystemType(Vector2d location)
-    // {
-    //     foreach (var sublayers in map.VectorData.GetAllFeatureSubLayers())
-    //     {
-    //         if (sublayers.("landuse"))
-    //         {
-    //             var properties = vectorLayer.Properties;
+    EcosystemType GetEcosystemType()
+    {
+        GameObject nearest = findClosestFeature().gameObject;
+        foreach(var layer in map.VectorData.GetAllFeatureSubLayers())
+        {
+            if(layer.SubLayerNameContains(nearest.name))
+            {        
+                switch(layer.presetFeatureType)
+                {
+                    case PresetFeatureType.Landuse: 
+                        switch(layer.coreOptions.sublayerName)
+                        {
+                            case "landuse_park":
+                                currEco = EcosystemType.Park;
+                                return currEco;
+                            case "landuse_residential":
+                                currEco = EcosystemType.Urban;
+                                return currEco;
+                            case "landuse_beach":
+                                currEco = EcosystemType.Beach;
+                                return currEco;
+                            default:
+                                currEco = EcosystemType.Undefined; 
+                                return currEco;
+                        }
+                    case PresetFeatureType.Custom:
+                        currEco = EcosystemType.Water;
+                        return currEco;
+                    case PresetFeatureType.Buildings:
+                        currEco = EcosystemType.Urban;
+                        return currEco;
+                    default: 
+                        currEco = EcosystemType.Undefined; 
+                        return currEco;
+                }
+            }
+        }
+        return currEco;
+    }
 
-    //             if (properties.HasValue("class"))
-    //             {
-    //                 string landUseClass = properties.GetValueAsString("class");
+    private bool isTileLoaded()
+    {
+        Mapbox.Map.UnwrappedTileId coordinateTileId = Conversions.LatitudeLongitudeToTileId(playerLatLon.x, playerLatLon.y, map.AbsoluteZoom);
+        UnityTile tile = map.MapVisualizer.GetUnityTileFromUnwrappedTileId(coordinateTileId);
+        if(tile.TileState != TilePropertyState.Unregistered)
+        {
+            return true;
+        }
+        else return false;
+    }
 
-    //                 switch (landUseClass)
-    //                 {
-    //                     case "forest":
-    //                     case "park":
-    //                         return EcosystemType.Forest;
-
-    //                     case "mountain":
-    //                         return EcosystemType.Mountain;
-
-    //                     case "urban":
-    //                         return EcosystemType.Urban;
-
-    //                     // Add more cases for other landuse classes (farmland, etc.)
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
-
+    private Transform findClosestFeature()
+    {
+        Transform nearestFeature = null;
+        FeatureBehaviour[] features = FindObjectsOfType<FeatureBehaviour>();
+            foreach(var feature in features)
+            {
+                float distance = Vector3.Distance(player.position, feature.transform.position);
+                if(distance <= searchRadius)
+                {
+                    nearestFeature = feature.transform;
+                    searchRadius = distance;
+                }
+            }
+        return nearestFeature;
+    }
 }
