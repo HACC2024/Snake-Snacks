@@ -1183,6 +1183,7 @@ MonoBehaviour:
     x: 0
     y: 0
   searchRadius: 15
+  currEco: 0
 --- !u!4 &914754107
 Transform:
   m_ObjectHideFlags: 0
@@ -5185,13 +5186,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ed7542b13eb234fa886213caccfb60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  birdsToSpawn:
-  - {fileID: 2868795614223661249, guid: 6f0445b02b74675428b41f43d3bf31d3, type: 3}
+  coastBirds: []
+  mountainBirds: []
+  forestBirds: []
+  urbanBirds: []
   minSpawn: 3
   maxSpawn: 5
   spawnRadius: 5
   destructionRadius: 8
   spawnScale: 2
+  ecoCheck: {fileID: 914754106}
 --- !u!21 &2092778487
 Material:
   serializedVersion: 8

@@ -21,7 +21,7 @@ public class RegionChecker : MonoBehaviour
     public Vector2d playerLatLon; // Reference to the player position
     private ILocationProvider _locationProvider;
     public float searchRadius = 5f;
-    private EcosystemType currEco;
+    public EcosystemType currEco;
     
 
     // Define ecosystem types
@@ -54,7 +54,7 @@ public class RegionChecker : MonoBehaviour
         }
     }
 
-    EcosystemType CheckMountain(Vector2d playerLatLon)
+    public EcosystemType CheckMountain(Vector2d playerLatLon)
     {
         float elevation = map.QueryElevationInMetersAt(playerLatLon);
         // height of a mountain in meters
@@ -66,7 +66,7 @@ public class RegionChecker : MonoBehaviour
         return EcosystemType.Undefined;
     }
 
-    EcosystemType GetEcosystemType()
+    public EcosystemType GetEcosystemType()
     {
         GameObject nearest = findClosestFeature().gameObject;
         foreach(var layer in map.VectorData.GetAllFeatureSubLayers())
@@ -106,7 +106,7 @@ public class RegionChecker : MonoBehaviour
         return currEco;
     }
 
-    private bool isTileLoaded()
+    public bool isTileLoaded()
     {
         Mapbox.Map.UnwrappedTileId coordinateTileId = Conversions.LatitudeLongitudeToTileId(playerLatLon.x, playerLatLon.y, map.AbsoluteZoom);
         UnityTile tile = map.MapVisualizer.GetUnityTileFromUnwrappedTileId(coordinateTileId);
@@ -117,7 +117,7 @@ public class RegionChecker : MonoBehaviour
         else return false;
     }
 
-    private Transform findClosestFeature()
+    public Transform findClosestFeature()
     {
         Transform nearestFeature = null;
         FeatureBehaviour[] features = FindObjectsOfType<FeatureBehaviour>();
