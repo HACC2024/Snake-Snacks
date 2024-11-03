@@ -8,24 +8,13 @@ using TMPro;
 public class Bird_Movement : MonoBehaviour
 {
     [SerializeField] GameObject _bird;
-    [SerializeField] bool Circulate = false;
+    [SerializeField] public bool Circulate = false;
     [SerializeField] bool ExtendRetract = false;
     [SerializeField] bool Jumping = false;
     [SerializeField] GameObject Circulate_Center;
-
-    //[SerializeField] private Renderer m_Renderer;
-    //[SerializeField] private Camera cam;
-    //[SerializeField] private Plane[] planes;
     [SerializeField] private Collider objCollider;
-
-    //[SerializeField] private TMP_Text Debug_Logger;
-    // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine(Circulate());
-        //Different_Location_Procedure();
-        //cam = Camera.main;
-        //planes = GeometryUtility.CalculateFrustumPlanes(cam);
         GameObject.Find("Circulate").gameObject.
             GetComponent<Button>().onClick.AddListener(
             () =>
@@ -37,7 +26,6 @@ public class Bird_Movement : MonoBehaviour
         GameObject.Find("Reposition").gameObject.
             GetComponent<Button>().onClick.AddListener(
             () => Different_Location_Procedure());
-        //Debug_Logger = GameObject.Find("Debug_Finding").gameObject.GetComponent<TMP_Text>();
         GameObject.Find("Main Camera").GetComponent<Camera_Manager>().objCollider = objCollider;
     }
 
@@ -54,25 +42,8 @@ public class Bird_Movement : MonoBehaviour
         if(Jumping) 
         {
             Jumping = false;
-            Different_Location_Procedure(); 
+            Different_Location_Procedure();
         }
-
-        //if (m_Renderer.isVisible)
-        //{
-        //    Debug.Log("Bird is visible");
-        //}
-        //else Debug.Log("Bird is no longer visible");
-        //if (GeometryUtility.TestPlanesAABB(planes, objCollider.bounds))
-        //{
-        //    Debug_Logger.text = _bird.name + " has been detected!";
-        //    //Debug.Log(_bird.name + " has been detected!");
-        //}
-        //else
-        //{
-        //    Debug_Logger.text = "Nothing has been detected";
-        //    //Debug.Log("Nothing has been detected");
-        //}
-        //planes = GeometryUtility.CalculateFrustumPlanes(cam);
     }
 
     public void Different_Location_Procedure()
@@ -84,9 +55,16 @@ public class Bird_Movement : MonoBehaviour
             if(_bird.transform.position != new Vector3(0, 0, 0)) { Return_To_Center(); }
         }
 
-        var loc = new Vector3(Random.Range(-10, 10), Random.Range(1, 10), Random.Range(-10, 10));
+        var cam = Camera.main.transform.position;
+        var loc = new Vector3(
+            Random.Range(cam.x - 5, cam.x + 5), 
+            Random.Range(cam.y + 1, cam.y + 5), 
+            Random.Range(cam.z - 5, cam.z + 5));
 
-        this.transform.DOLocalJump(loc, 1, 1, 3);
+        Circulate_Center.transform.DOJump(loc, 1, 1, 3);
+
+        Invoke("Different_Location_Procedure", Random.Range(5.0f, 10.0f));
+        //Circulate_Center.transform.DOLocalJump(loc, 1, 1, 3);
     }
 
     IEnumerator Extend_From_Center()
@@ -102,13 +80,4 @@ public class Bird_Movement : MonoBehaviour
         yield return new WaitForSeconds(5);
         Circulate = false;
     }
-
-    //IEnumerator Circulate()
-    //{
-    //    _bird.transform.DOMoveX(2, 5, false);
-    //    yield return new WaitForSeconds(5);
-    //    this.transform.DORotate(new Vector3(0, 180, 0), 10);
-    //    yield return new WaitForSeconds(10);
-    //    this.transform.DORotate(new Vector3(0, 360, 0), 10);
-    //}
 }
