@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86faebb0e7fd5694b973cde1f6bb681d, type: 3}
+  m_Name: American Wigeon
+  m_EditorClassIdentifier: 
+  Name: American Wigeon
+  Photo: {fileID: 21300000, guid: 3de3a3a64fd6e6947be0b51cbe333441, type: 3}
+  Status: 0
+  Hawaiian_Name: 
+  Species_Description: 'Breeding males have obvious white blaze on forehead and broad
+    green slash behind eye. Females are plainer brown with rusty sides. Females are
+    very difficult to distinguish from female Eurasian Wigeon; note colder grayish-brown
+    head on American that contrasts with warmer orangey sides. Also look for brighter
+    white, not gray, underwings in flight, but this can be difficult to judge, especially
+    at a distance. Widespread and common in North America, occasionally wintering
+    as far south as northern South America. Typically in flocks on lakes and wetlands,
+    often grazing in nearby fields. Regular vagrant to Europe. '
+  Native: 1
