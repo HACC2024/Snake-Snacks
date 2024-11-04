@@ -58,13 +58,20 @@ public class Bird_Movement : MonoBehaviour
         var cam = Camera.main.transform.position;
         var loc = new Vector3(
             Random.Range(cam.x - 5, cam.x + 5), 
-            Random.Range(cam.y + 1, cam.y + 5), 
+            Random.Range(cam.y - 1, cam.y + 2), 
             Random.Range(cam.z - 5, cam.z + 5));
 
         Circulate_Center.transform.DOJump(loc, 1, 1, 3);
 
         Invoke("Different_Location_Procedure", Random.Range(5.0f, 10.0f));
         //Circulate_Center.transform.DOLocalJump(loc, 1, 1, 3);
+    }
+
+    public void Target_Position(Vector3 target)
+    {
+        Circulate_Center.transform.DOJump(target, 1, 1, 5);
+
+        Invoke("Different_Location_Procedure", Random.Range(5.0f, 10.0f));
     }
 
     IEnumerator Extend_From_Center()

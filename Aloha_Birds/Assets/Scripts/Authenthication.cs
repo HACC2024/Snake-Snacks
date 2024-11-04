@@ -10,6 +10,10 @@ public class Authenthication : MonoBehaviour
     [SerializeField] private TMP_InputField Username;
     [SerializeField] private TMP_InputField Password;
     [SerializeField] private TMP_InputField ReType_Password;
+    [SerializeField] private TMP_InputField Screen_Name;
+
+    [SerializeField] private GameObject After_SignIn;
+    [SerializeField] private GameObject After_SignUp;
     async void Awake()
     {
         try
@@ -20,6 +24,9 @@ public class Authenthication : MonoBehaviour
         {
             Debug.LogException(e);
         }
+
+        SignInCachedUserAsync();
+        //Load game
     }
 
     // Setup authentication event handlers if desired
@@ -48,6 +55,39 @@ public class Authenthication : MonoBehaviour
         };
     }
 
+    async public void SignInCachedUserAsync()
+    {
+        // Check if a cached player already exists by checking if the session token exists
+        if (!AuthenticationService.Instance.SessionTokenExists)
+        {
+            // if not, then do nothing
+            return;
+        }
+
+        // Sign in Anonymously
+        // This call will sign in the cached player.
+        try
+        {
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            Debug.Log("Sign in anonymously succeeded!");
+
+            // Shows how to get the playerID
+            Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
+        }
+        catch (AuthenticationException ex)
+        {
+            // Compare error code to AuthenticationErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+        catch (RequestFailedException ex)
+        {
+            // Compare error code to CommonErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+    }
+
     async public void SignUp()
     {
         if(Password.text.Equals(ReType_Password.text))
@@ -74,7 +114,30 @@ public class Authenthication : MonoBehaviour
         {
             Debug.Log("Passwords don't match");
         }
-        
+
+        After_SignUp.SetActive(true);
+    }
+
+    async public void Create_Screen_Name()
+    {
+        try
+        {
+            await AuthenticationService.Instance.UpdatePlayerNameAsync(Screen_Name.text);
+        }
+        catch (AuthenticationException ex)
+        {
+            //Couldn't authenticate, relog
+            Debug.LogException(ex);
+            return;
+        }
+        catch (RequestFailedException ex)
+        {
+            //Not signed in/request failed
+            Debug.LogException(ex);
+            return;
+        }
+
+        //Load Game
     }
 
     async  public void SignIn()
@@ -96,5 +159,8 @@ public class Authenthication : MonoBehaviour
             // Notify the player with the proper error message
             Debug.LogException(ex);
         }
+
+        //Load Game
+        After_SignIn.SetActive(true);
     }
 }

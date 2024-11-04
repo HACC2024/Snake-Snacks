@@ -16,6 +16,7 @@ public class Camera_Manager : MonoBehaviour
     private void Start()
     {
         cam = Camera.main;
+        StartCoroutine(Capture_Screen());
     }
 
     public void Update()
@@ -36,10 +37,13 @@ public class Camera_Manager : MonoBehaviour
             Debug_Logger.text = objCollider.gameObject.name + " has been detected!\n Total Score: " + Score;
             //Debug.Log(_bird.name + " has been detected!");
             //Point breakdown:
-                //Distance = 1000 / distance
-                //Onscreen = 1000
-                //Timed = 1000 / elapsed
-                //Correct bird ID = 1000
+            //Distance = 1000 / distance
+            //Onscreen = 1000
+            //Timed = 1000 / elapsed
+            //Correct bird ID = 1000
+
+            //StartCoroutine(Capture_Screen());
+            //Display image
         }
         else
         {
@@ -56,6 +60,7 @@ public class Camera_Manager : MonoBehaviour
 
     IEnumerator Capture_Screen()
     {
+        yield return new WaitForSeconds(3.0f);
         yield return new WaitForEndOfFrame();
         Camera camera = Camera.main;
         int width = Screen.width;
@@ -82,6 +87,7 @@ public class Camera_Manager : MonoBehaviour
         byte[] bytes = image.EncodeToPNG();
         string fileName = DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png";
         string filePath = Path.Combine(Application.persistentDataPath, fileName);
+        Debug.Log(filePath);
 
         File.WriteAllBytes(filePath, bytes);
 

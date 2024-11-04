@@ -42,9 +42,14 @@ public class Bird_Manager : MonoBehaviour
 
     public void Spawn_Bird()
     {
-        var bird = Instantiate(Bird_Prefab, new Vector3(0, 0, 3), Quaternion.identity);
+        var bird = Instantiate(Bird_Prefab, new Vector3(0, 5, 0), Quaternion.identity);
         bird.AddComponent<ARAnchor>();
-        bird.GetComponent<Bird_Movement>().Different_Location_Procedure();
+        bird.GetComponent<Bird_Movement>().Target_Position(new Vector3(
+            Random.Range(-3, 3),
+            Random.Range(-3, 3),
+            Random.Range(-3, 3)));
+        bird.GetComponent<Bird_Movement>().Circulate = true;
+        Camera.main.GetComponent<Camera_Manager>().objCollider = bird.GetComponentInChildren<Collider>();
         //Anchors.Add(bird.GetComponent<ARAnchor>());
         //Vector3 position = arCamera.ScreenToWorldPoint(Vector3.zero);
 
