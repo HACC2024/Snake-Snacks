@@ -16,29 +16,14 @@ public class Bird_Manager : MonoBehaviour
 
     private ARAnchorManager anchorManager;
     [SerializeField] private Camera arCamera;
-    private bool Spawned = false;
 
     private void Awake()
     {
         planeManager = GetComponent<ARPlaneManager>();
         anchorManager = GetComponent<ARAnchorManager>();
 
-        //planeManager.planesChanged += PlanesChanged;
-
         Spawn_Bird();
     }
-
-    //void PlanesChanged(ARPlanesChangedEventArgs args)
-    //{
-    //    foreach(var plane in args.added)
-    //    {
-    //        if(!Spawned)
-    //        {
-    //            Spawn_Bird(plane);
-    //        }
-            
-    //    }
-    //}
 
     public void Spawn_Bird()
     {
@@ -50,17 +35,6 @@ public class Bird_Manager : MonoBehaviour
             Random.Range(-3, 3)));
         bird.GetComponent<Bird_Movement>().Circulate = true;
         Camera.main.GetComponent<Camera_Manager>().objCollider = bird.GetComponentInChildren<Collider>();
-        //Anchors.Add(bird.GetComponent<ARAnchor>());
-        //Vector3 position = arCamera.ScreenToWorldPoint(Vector3.zero);
-
-        ////public ARAnchor AttachAnchor(ARPlane plane, Pose pose)
-        ////ARAnchor anchor = anchorManager.AddAnchor(new Pose(position, Quaternion.identity));
-        //ARAnchor anchor = anchorManager.AttachAnchor(plane, new Pose(position, Quaternion.identity));
-        //Anchors.Add(anchor);
-
-        //GameObject go = Instantiate(Bird_Prefab);
-        //go.transform.parent = anchorManager.transform ?? transform;
-        //go.transform.position = position;
-        //Spawned = true;
+        Camera.main.GetComponent<Camera_Manager>().Bird_Name = bird.name;
     }
 }
