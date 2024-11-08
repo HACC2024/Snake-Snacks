@@ -101,13 +101,14 @@ public class Camera_Manager : MonoBehaviour
         image.Apply();
         After_Snap.gameObject.SetActive(true);
         Captured_Image.sprite = Sprite.Create(image, new Rect(0, 0, camera.targetTexture.width, camera.targetTexture.height), new Vector2(0, 0));
+        Captured_Image.color = new Color(1, 1, 1, 1);
 
         camera.targetTexture = null;
 
         // Replace the original active Render Texture.
         RenderTexture.active = currentRT;
         //byte[] bytes = image.EncodeToPNG();
-        Destroy(rt);
+        //Destroy(rt);
     }
 
     IEnumerator FadeImage()
