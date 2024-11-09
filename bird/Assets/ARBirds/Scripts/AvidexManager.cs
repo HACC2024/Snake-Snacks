@@ -12,6 +12,8 @@ public class AvidexManager : MonoBehaviour
     public GameObject entryPrefab;
     public GameObject detailView;
     private EcosystemType currentEcosystem;
+    public GameObject AvidexUI;
+    private bool toggle = false;
 
     //Variables for detailed bird entries
     public TMP_Text name;
@@ -24,6 +26,7 @@ public class AvidexManager : MonoBehaviour
     void Start()
     {
         ShowBirdList(EcosystemType.Forest); // Start with a default ecosystem type
+        detailView.SetActive(false);
     }
     
     public void ShowBirdList(EcosystemType ecosystemType)
@@ -79,5 +82,16 @@ public class AvidexManager : MonoBehaviour
     public void ShowUrbanBirds()
     {
         ShowBirdList(EcosystemType.Urban);
+    }
+
+    public void ToggleUI()
+    {
+        toggle = !toggle;
+        AvidexUI.SetActive(toggle);
+    }
+
+    public void ToggleDetail()
+    {
+        detailView.SetActive(false);
     }
 }

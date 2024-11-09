@@ -14,6 +14,7 @@ public class Avidex : ScriptableObject
     public bool Native;
     public bool Found;
     public EcosystemType EcosystemType;
+    public GameObject birdPrefab;
 }
 
 public enum Conservation_Status
