@@ -13,19 +13,19 @@ public class Bird_Movement : MonoBehaviour
     [SerializeField] bool Jumping = false;
     [SerializeField] GameObject Circulate_Center;
     [SerializeField] private Collider objCollider;
-    void Start()
+    void Awake()
     {
-        GameObject.Find("Circulate").gameObject.
-            GetComponent<Button>().onClick.AddListener(
-            () =>
-            {
-                ExtendRetract = !ExtendRetract;
-                Circulate = !Circulate;
-            }
-            );
-        GameObject.Find("Reposition").gameObject.
-            GetComponent<Button>().onClick.AddListener(
-            () => Different_Location_Procedure());
+        //GameObject.Find("Circulate").gameObject.
+        //    GetComponent<Button>().onClick.AddListener(
+        //    () =>
+        //    {
+        //        ExtendRetract = !ExtendRetract;
+        //        Circulate = !Circulate;
+        //    }
+        //    );
+        //GameObject.Find("Reposition").gameObject.
+        //    GetComponent<Button>().onClick.AddListener(
+        //    () => Different_Location_Procedure());
         GameObject.Find("Main Camera").GetComponent<Camera_Manager>().objCollider = objCollider;
     }
 

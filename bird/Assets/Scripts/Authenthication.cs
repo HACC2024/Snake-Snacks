@@ -4,6 +4,7 @@ using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Authenthication : MonoBehaviour
 {
@@ -12,22 +13,21 @@ public class Authenthication : MonoBehaviour
     [SerializeField] private TMP_InputField ReType_Password;
     [SerializeField] private TMP_InputField Screen_Name;
 
+    [SerializeField] private GameObject Sign_Up;
+    [SerializeField] private GameObject Sign_In;
     [SerializeField] private GameObject After_SignIn;
     [SerializeField] private GameObject After_SignUp;
-    async void Awake()
-    {
-        try
-        {
-            await UnityServices.InitializeAsync();
-        }
-        catch (Exception e)
-        {
-            Debug.LogException(e);
-        }
-
-        SignInCachedUserAsync();
-        //Load game
-    }
+    //async void Awake()
+    //{
+    //    try
+    //    {
+    //        await UnityServices.InitializeAsync();
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        Debug.LogException(e);
+    //    }
+    //}
 
     // Setup authentication event handlers if desired
     void SetupEvents()
@@ -55,39 +55,6 @@ public class Authenthication : MonoBehaviour
         };
     }
 
-    async public void SignInCachedUserAsync()
-    {
-        // Check if a cached player already exists by checking if the session token exists
-        if (!AuthenticationService.Instance.SessionTokenExists)
-        {
-            // if not, then do nothing
-            return;
-        }
-
-        // Sign in Anonymously
-        // This call will sign in the cached player.
-        try
-        {
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
-            Debug.Log("Sign in anonymously succeeded!");
-
-            // Shows how to get the playerID
-            Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
-        }
-        catch (AuthenticationException ex)
-        {
-            // Compare error code to AuthenticationErrorCodes
-            // Notify the player with the proper error message
-            Debug.LogException(ex);
-        }
-        catch (RequestFailedException ex)
-        {
-            // Compare error code to CommonErrorCodes
-            // Notify the player with the proper error message
-            Debug.LogException(ex);
-        }
-    }
-
     async public void SignUp()
     {
         if(Password.text.Equals(ReType_Password.text))
@@ -95,6 +62,8 @@ public class Authenthication : MonoBehaviour
             try
             {
                 await AuthenticationService.Instance.SignUpWithUsernamePasswordAsync(Username.text, Password.text);
+                Sign_Up.SetActive(false);
+                After_SignUp.SetActive(true);
                 Debug.Log("SignUp is successful.");
             }
             catch (AuthenticationException ex)
@@ -114,8 +83,7 @@ public class Authenthication : MonoBehaviour
         {
             Debug.Log("Passwords don't match");
         }
-
-        After_SignUp.SetActive(true);
+        
     }
 
     async public void Create_Screen_Name()
@@ -123,6 +91,8 @@ public class Authenthication : MonoBehaviour
         try
         {
             await AuthenticationService.Instance.UpdatePlayerNameAsync(Screen_Name.text);
+            Debug.Log("Name set");
+            SceneManager.LoadScene("GPSTesting", LoadSceneMode.Single);
         }
         catch (AuthenticationException ex)
         {
@@ -136,8 +106,6 @@ public class Authenthication : MonoBehaviour
             Debug.LogException(ex);
             return;
         }
-
-        //Load Game
     }
 
     async  public void SignIn()
@@ -146,6 +114,7 @@ public class Authenthication : MonoBehaviour
         {
             await AuthenticationService.Instance.SignInWithUsernamePasswordAsync(Username.text, Password.text);
             Debug.Log("SignIn is successful.");
+            SceneManager.LoadScene("GPSTesting", LoadSceneMode.Single);
         }
         catch (AuthenticationException ex)
         {
@@ -159,8 +128,5 @@ public class Authenthication : MonoBehaviour
             // Notify the player with the proper error message
             Debug.LogException(ex);
         }
-
-        //Load Game
-        After_SignIn.SetActive(true);
     }
 }

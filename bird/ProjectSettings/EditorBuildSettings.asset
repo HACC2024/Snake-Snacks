@@ -5,9 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Mapbox/Examples/0_PrefabScenes/Location-basedGame.unity
     guid: 42f6aa7ce7a604f16ade319663f46ceb
+  - enabled: 1
+    path: Assets/Scenes/AR_Bird.unity
+    guid: cacb572c9696c9b4b95db011b9a19942
+  - enabled: 1
+    path: Assets/Scenes/Start_Up.unity
+    guid: 2d65a44e9a0c93e4d910d513ca3565c9
+  - enabled: 1
+    path: Assets/ARBirds/GPSTesting.unity
+    guid: fa9255de13df13d4b8e8c42692f69400
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6ee72d15cf39dd748a13eac57397b9af,
       type: 2}
