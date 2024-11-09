@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7287427325844642760}
   - component: {fileID: 520517565153557271}
   m_Layer: 0
-  m_Name: Bird
+  m_Name: Hawaiian Honeycreeper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
