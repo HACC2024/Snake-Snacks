@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86faebb0e7fd5694b973cde1f6bb681d, type: 3}
+  m_Name: Kalij Pheasant
+  m_EditorClassIdentifier: 
+  Name: Kalij Pheasant
+  Photo: {fileID: 21300000, guid: 22de8e1bd8659104db8e42a79be8be24, type: 3}
+  Status: 0
+  Hawaiian_Name: 
+  Species_Description: A distinctive pheasant with bare red facial skin, a backward-pointing
+    crest, and a vertically compressed tail. Males are iridescent black and silver.
+    Females are grayish-brown. Coloration varies considerably throughout its range,
+    with northeastern birds averaging the darkest. Occurs in forested areas, usually
+    in hilly or mountainous regions. Overlaps with Silver Pheasant in the north of
+    its range, with which it produces confusing intergrades. Native to South and
+    Southeast Asia and introduced to the Hawaiian Islands of Hawaii and western Oahu.
+    Males give a soft crow, other calls include low grunts and high-pitched squeals.
+  Native: 0
+  Found: 0
+  EcosystemType: 2
+  birdPrefab: {fileID: 0}

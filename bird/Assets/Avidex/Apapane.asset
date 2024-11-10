@@ -16,5 +16,15 @@ MonoBehaviour:
   Photo: {fileID: 21300000, guid: ca18de0a999f8c3488569db15da65c69, type: 3}
   Status: 0
   Hawaiian_Name: 
-  Species_Description: 
-  Native: 0
+  Species_Description: "A blood-red Hawaiian honeycreeper found on all of the larger
+    islands. Smaller and darker red than the Iiwi, with a shorter black bill and
+    white under the tail. Juveniles are brown instead of red. Sometimes abundant
+    in native forest at high elevations and also occurs at lower elevations in some
+    areas where it usually stays high in the forest canopy. Large numbers may congregate
+    in a flowering tree. Sometimes holds the tail cocked up. Often flies in flocks,
+    sometimes high above the forest. Song consists of 2\u20133 soft notes followed
+    by a reedy trill: \u201Cdee-der-di-di-di-di.\u201D"
+  Native: 1
+  Found: 0
+  EcosystemType: 2
+  birdPrefab: {fileID: 0}

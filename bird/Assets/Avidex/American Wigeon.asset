@@ -25,3 +25,6 @@ MonoBehaviour:
     as far south as northern South America. Typically in flocks on lakes and wetlands,
     often grazing in nearby fields. Regular vagrant to Europe. '
   Native: 1
+  Found: 0
+  EcosystemType: 1
+  birdPrefab: {fileID: 0}

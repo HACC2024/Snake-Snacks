@@ -12,6 +12,9 @@ public class Avidex : ScriptableObject
     [TextAreaAttribute]
     public string Species_Description;
     public bool Native;
+    public bool Found;
+    public EcosystemType EcosystemType;
+    public GameObject birdPrefab;
 }
 
 public enum Conservation_Status
@@ -20,4 +23,12 @@ public enum Conservation_Status
     NT, // Near Threatened
     VU, // Vulnerable
     EN // Endangered
+}
+
+public enum EcosystemType
+{
+    Forest,
+    Coastline,
+    Mountain,
+    Urban
 }

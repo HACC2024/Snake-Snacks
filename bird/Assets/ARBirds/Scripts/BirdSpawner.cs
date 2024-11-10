@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BirdSpawner : MonoBehaviour
 {
-    
-    public GameObject[] coastBirds;  // Array of interactable GameObjects to spawn
-    public GameObject[] mountainBirds;
-    public GameObject[] forestBirds;
-    public GameObject[] urbanBirds;
+    public AvidexManager aviman;
+    private List<GameObject> coastBirds;  // Interactable GameObjects to spawn
+    private List<GameObject> mountainBirds;
+    private List<GameObject> forestBirds;
+    private List<GameObject> urbanBirds;
     public int minSpawn = 3;        // Minimum number of objects to spawn
     public int maxSpawn = 5;       // Maximum number of objects to spawn
     public float spawnRadius = 20f;      // Radius around the player where objects can spawn
@@ -21,6 +21,7 @@ public class BirdSpawner : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
+        SortBirds();
     }
 
     void Update()
@@ -48,25 +49,24 @@ public class BirdSpawner : MonoBehaviour
             switch(ecoCheck.currEco)
             {
                 case RegionChecker.EcosystemType.Beach:
-                    birdToSpawn = coastBirds[Random.Range(0, coastBirds.Length)];
+                    birdToSpawn = coastBirds[Random.Range(0, coastBirds.Count)];
                     break;
                 case RegionChecker.EcosystemType.Water:
-                    birdToSpawn = coastBirds[Random.Range(0, coastBirds.Length)];
+                    birdToSpawn = coastBirds[Random.Range(0, coastBirds.Count)];
                     break;
                 case RegionChecker.EcosystemType.Mountain:
-                    birdToSpawn = mountainBirds[Random.Range(0, mountainBirds.Length)];
+                    birdToSpawn = mountainBirds[Random.Range(0, mountainBirds.Count)];
                     break;
                 case RegionChecker.EcosystemType.Park:
-                    birdToSpawn = forestBirds[Random.Range(0, forestBirds.Length)];
+                    birdToSpawn = forestBirds[Random.Range(0, forestBirds.Count)];
                     break;
                 case RegionChecker.EcosystemType.Urban:
-                    birdToSpawn = urbanBirds[Random.Range(0, urbanBirds.Length)];
+                    birdToSpawn = urbanBirds[Random.Range(0, urbanBirds.Count)];
                     break;
                 default:
-                    birdToSpawn = urbanBirds[Random.Range(0, urbanBirds.Length)];
+                    birdToSpawn = urbanBirds[Random.Range(0, urbanBirds.Count)];
                     break;
             }
-            // RANDOMLY SELECTS, CHANGE LATER TO BIRDS SPECIFIC TO ECOSYSTEM TYPE
 
             // Check for collisions when spawning so birds do not overlap
             if(!Physics.CheckSphere(spawnPosition, 2f))
@@ -105,6 +105,28 @@ public class BirdSpawner : MonoBehaviour
                     Destroy(spawnedObjects[i]);
                     spawnedObjects.RemoveAt(i);  // Remove from the list
                 }
+            }
+        }
+    }
+
+    private void SortBirds()
+    {
+        foreach(var bird in aviman.allEntries)
+        {
+            switch(bird.EcosystemType)
+            {
+                case EcosystemType.Forest:
+                    forestBirds.Add(bird.birdPrefab);
+                    break;
+                case EcosystemType.Coastline:
+                    coastBirds.Add(bird.birdPrefab);
+                    break;
+                case EcosystemType.Mountain:
+                    mountainBirds.Add(bird.birdPrefab);
+                    break;
+                case EcosystemType.Urban:
+                    urbanBirds.Add(bird.birdPrefab);
+                    break;
             }
         }
     }

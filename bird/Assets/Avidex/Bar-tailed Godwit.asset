@@ -12,9 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86faebb0e7fd5694b973cde1f6bb681d, type: 3}
   m_Name: Bar-tailed Godwit
   m_EditorClassIdentifier: 
-  Name: 
-  Photo: {fileID: 0}
-  Status: 0
+  Name: Bar-tailed Godwit
+  Photo: {fileID: 21300000, guid: 212e7ca092197c641ac35d1918070063, type: 3}
+  Status: 1
   Hawaiian_Name: 
-  Species_Description: 
+  Species_Description: Gangly wader with a long bicolored bill. Breeding plumage
+    is dark brick-red below (male) or pale orangey (female); nonbreeding plumage
+    is overall gray-brown with white belly; compare to Black-tailed Godwit. In flight
+    shows rather plain upperwings with only a faint whitish wing stripe; white rump
+    and finely barred tail. Mainly coastal away from tundra breeding grounds. Often
+    in flocks feeding on mudflats and in brackish coastal lagoons, roosting in adjacent
+    freshwater habitats. Feeds by probing its long bill into the mud.
   Native: 0
+  Found: 0
+  EcosystemType: 1
+  birdPrefab: {fileID: 0}

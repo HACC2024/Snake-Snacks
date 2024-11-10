@@ -12,9 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86faebb0e7fd5694b973cde1f6bb681d, type: 3}
   m_Name: Black Noddy
   m_EditorClassIdentifier: 
-  Name: 
-  Photo: {fileID: 0}
+  Name: Black Noddy
+  Photo: {fileID: 21300000, guid: 593f989824b8c3043a26219c9a600c7d, type: 3}
   Status: 0
-  Hawaiian_Name: 
-  Species_Description: 
-  Native: 0
+  Hawaiian_Name: Noio
+  Species_Description: A medium-sized black tern with a tail that appears square
+    or slightly forked. Smaller and darker than Brown Noddy with a shorter tail,
+    thinner bill, and more contrasting white cap. Uniformly black back, wings and
+    tail, and dark legs, except on the main Hawaiian islands where tail and rump
+    are grayish and feet and legs are bright orange. Nests on coastal cliffs, in
+    sea caves, and in trees. More often seen in groups than Brown Noddy. Often seen
+    from shore.
+  Native: 1
+  Found: 0
+  EcosystemType: 1
+  birdPrefab: {fileID: 0}
