@@ -17,6 +17,7 @@ public class Authenthication : MonoBehaviour
     [SerializeField] private GameObject Sign_In;
     [SerializeField] private GameObject After_SignIn;
     [SerializeField] private GameObject After_SignUp;
+    [SerializeField] private GameObject Delete_Toggler;
     //async void Awake()
     //{
     //    try
@@ -64,6 +65,7 @@ public class Authenthication : MonoBehaviour
                 await AuthenticationService.Instance.SignUpWithUsernamePasswordAsync(Username.text, Password.text);
                 Sign_Up.SetActive(false);
                 After_SignUp.SetActive(true);
+                Delete_Toggler.SetActive(false);
                 Debug.Log("SignUp is successful.");
             }
             catch (AuthenticationException ex)

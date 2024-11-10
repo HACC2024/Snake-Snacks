@@ -1692,6 +1692,7 @@ MonoBehaviour:
   Sign_In: {fileID: 0}
   After_SignIn: {fileID: 0}
   After_SignUp: {fileID: 0}
+  Delete_Toggler: {fileID: 0}
 --- !u!1 &578392240
 GameObject:
   m_ObjectHideFlags: 0
@@ -4862,6 +4863,7 @@ MonoBehaviour:
   Sign_In: {fileID: 0}
   After_SignIn: {fileID: 0}
   After_SignUp: {fileID: 954150934}
+  Delete_Toggler: {fileID: 931414614}
 --- !u!1 &1562753660
 GameObject:
   m_ObjectHideFlags: 0
