@@ -12,9 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86faebb0e7fd5694b973cde1f6bb681d, type: 3}
   m_Name: Arctic Tern
   m_EditorClassIdentifier: 
-  Name: 
-  Photo: {fileID: 0}
+  Name: Arctic Tern
+  Photo: {fileID: 21300000, guid: dbe90599a75ea0c44a4593252db69cd7, type: 3}
   Status: 0
   Hawaiian_Name: 
-  Species_Description: 
+  Species_Description: Elegant seabird with extremely long wings and forked tail.
+    Adults are pale gray with white cheek, black cap, and red bill and legs. Very
+    similar to Common Tern; note shorter bill, shorter legs, gray belly, and paler
+    gray wingtips with very limited dark tips. Young birds show partial black cap
+    and black bill and legs; look for pale gray wingtips and stubbier legs to separate
+    from Common Tern. Rarely seen away from breeding grounds on coastal islands or
+    small ponds in the Arctic tundra. Migrates offshore, heading for wintering grounds
+    in Southern Hemisphere.
   Native: 0
+  Found: 0
+  EcosystemType: 1
+  birdPrefab: {fileID: 0}

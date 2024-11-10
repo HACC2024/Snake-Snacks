@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86faebb0e7fd5694b973cde1f6bb681d, type: 3}
   m_Name: Mariana Swiftlet
   m_EditorClassIdentifier: 
-  Name: 
-  Photo: {fileID: 0}
-  Status: 0
+  Name: Mariana Swiftlet
+  Photo: {fileID: 21300000, guid: e4163676f108bb44bb57d8b25fc2bea0, type: 3}
+  Status: 3
   Hawaiian_Name: 
-  Species_Description: 
+  Species_Description: A tiny, all-dark swift. Flight is fast, fluttery, and batlike.
+    Usually observed flying continuously along ridges or over the forest canopy.
+    Native to the Mariana Islands; introduced to Hawaii from Guam in the 1960s. In
+    Hawaii, occurs only in the mountains of Central Oahu, seen primarily in Halawa
+    Valley and the adjacent Aiea Loop Trail.
   Native: 0
   Found: 0
-  EcosystemType: 0
+  EcosystemType: 2
   birdPrefab: {fileID: 0}

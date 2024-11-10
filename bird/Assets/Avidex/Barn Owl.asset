@@ -12,9 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86faebb0e7fd5694b973cde1f6bb681d, type: 3}
   m_Name: Barn Owl
   m_EditorClassIdentifier: 
-  Name: 
-  Photo: {fileID: 0}
+  Name: Barn Owl
+  Photo: {fileID: 21300000, guid: cde9af372688e74408ae8556cd375d72, type: 3}
   Status: 0
   Hawaiian_Name: 
-  Species_Description: 
+  Species_Description: Medium-sized owl with a heart-shaped facial disc and deep
+    dark eyes; the only Tyto owl present throughout much of its range. Varies across
+    a wide global range, but always note white-and-black speckling on the upperparts,
+    beautiful gray-and-tawny wings, and large round head. Color of the facial disc
+    and underparts varies from pure white to rusty orange. Hunts primarily rodents
+    in open areas by night, foraging with a slow and buoyant flight. Roosts in old
+    buildings, tree hollows, caves, and nest boxes by day. Its call is a bone-chilling,
+    rising shriek.
   Native: 0
+  Found: 0
+  EcosystemType: 3
+  birdPrefab: {fileID: 0}

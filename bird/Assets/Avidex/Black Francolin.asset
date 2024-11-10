@@ -12,9 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86faebb0e7fd5694b973cde1f6bb681d, type: 3}
   m_Name: Black Francolin
   m_EditorClassIdentifier: 
-  Name: 
-  Photo: {fileID: 0}
+  Name: Black Francolin
+  Photo: {fileID: 21300000, guid: 84b1372f0027c744f935832ec084e235, type: 3}
   Status: 0
   Hawaiian_Name: 
-  Species_Description: 
+  Species_Description: "Strikingly patterned male is unmistakable with his jet-black
+    face and breast, white cheek patch, dark rust-brown collar, and bright white
+    spots. Brownish female has a small orange nape patch, pale throat, and dense
+    black-and-white markings all over the body; compare with larger Gray Francolin.
+    Occurs in dry grasslands, agricultural land, and weedy fields. Shier than other
+    francolins; more often heard than seen. Usually solitary or in pairs. Male call
+    is a peculiar, metallic-sounding \u201Ckeek, keek, kek-ke-kek.\u201D Native to
+    Asia, from Turkey east to far eastern India and northern Myanmar; introduced
+    to Hawaii."
   Native: 0
+  Found: 0
+  EcosystemType: 0
+  birdPrefab: {fileID: 0}

@@ -12,12 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86faebb0e7fd5694b973cde1f6bb681d, type: 3}
   m_Name: Oahu Elepaio
   m_EditorClassIdentifier: 
-  Name: 
-  Photo: {fileID: 0}
-  Status: 0
+  Name: Oahu Elepaio
+  Photo: {fileID: 21300000, guid: d3c8b41aeab75a149a5e05f1b4ecea4f, type: 3}
+  Status: 2
   Hawaiian_Name: 
-  Species_Description: 
-  Native: 0
+  Species_Description: "A small flycatcher of forested habitats on Oahu. Adults are
+    brown above, whitish below, and have white wingbars, rump, and tail tips. Immatures
+    are reddish brown and have buffy wingbars. Uncommon and local on Oahu, more numerous
+    in valleys. Bold and curious; not afraid of people and may follow hikers. Often
+    holds tail cocked up at an angle. Male song is a shrill \u201CEl-eh-pie-oh\u201D
+    for which the species is named. Both sexes give a variety of soft calls and scolding
+    notes. Responds to pishing and squeaking."
+  Native: 1
   Found: 0
   EcosystemType: 0
   birdPrefab: {fileID: 0}

@@ -12,9 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86faebb0e7fd5694b973cde1f6bb681d, type: 3}
   m_Name: Black Swan
   m_EditorClassIdentifier: 
-  Name: 
-  Photo: {fileID: 0}
+  Name: Black Swan
+  Photo: {fileID: 21300000, guid: 3381280249418c14aa3bc7adfe968890, type: 3}
   Status: 0
   Hawaiian_Name: 
-  Species_Description: 
+  Species_Description: Unmistakable large black swan with a red bill. When swimming
+    this species is almost entirely black. Wings show extensive white flight feathers
+    when flying. Juveniles are similar but dark-gray. In Australia, compare with
+    Magpie Goose, which has white belly, and white underwing with black tips. Typically
+    found along inland waterways, rivers, sewage ponds, and coastal lagoons and inlets.
+    Sometimes flocks together in enormous numbers on large wetlands.
   Native: 0
+  Found: 0
+  EcosystemType: 1
+  birdPrefab: {fileID: 0}

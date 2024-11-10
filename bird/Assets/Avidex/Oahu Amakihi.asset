@@ -12,12 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86faebb0e7fd5694b973cde1f6bb681d, type: 3}
   m_Name: Oahu Amakihi
   m_EditorClassIdentifier: 
-  Name: 
-  Photo: {fileID: 0}
-  Status: 0
+  Name: Oahu Amakihi
+  Photo: {fileID: 21300000, guid: 9bc6085a540a83446a834478fb684ded, type: 3}
+  Status: 2
   Hawaiian_Name: 
-  Species_Description: 
-  Native: 0
+  Species_Description: "A small Hawaiian honeycreeper of forests on Oahu. Males are
+    bright yellow and females are grayer with two whitish wingbars. The bill is thicker
+    and more curved than that of Warbling White-eye. Occurs in native and non-native
+    forests, parks, and some suburban areas near mountains. Moves quickly among leaves
+    and small branches in the understory and forest canopy in search of nectar, insects,
+    and fruit. Song is a trill that does not change in pitch or speed. Call is a
+    nasal \u201Cchee.\u201D"
+  Native: 1
   Found: 0
   EcosystemType: 0
   birdPrefab: {fileID: 0}

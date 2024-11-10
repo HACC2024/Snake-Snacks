@@ -12,12 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86faebb0e7fd5694b973cde1f6bb681d, type: 3}
   m_Name: House Sparrow
   m_EditorClassIdentifier: 
-  Name: 
-  Photo: {fileID: 0}
+  Name: House Sparrow
+  Photo: {fileID: 21300000, guid: 22c0a5b7614d01b448045a0967501ed7, type: 3}
   Status: 0
-  Hawaiian_Name: 
-  Species_Description: 
+  Hawaiian_Name: Manu Li'ili'i
+  Species_Description: Widespread and abundant in cities, neighborhoods and farms.
+    Avoids dense woods. Flocks cluster in dense bushes, bustling around and chattering
+    to one another. Males have smart black bibs, bright rufous napes, and stunningly
+    patterned wings with brilliant buffs and browns. Underparts are pale pearly-gray.
+    Females are plain brown with cute face and lighter eyebrow. Native to Eurasia;
+    introduced to much of the rest of the world.
   Native: 0
   Found: 0
-  EcosystemType: 0
+  EcosystemType: 3
   birdPrefab: {fileID: 0}
