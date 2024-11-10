@@ -9,6 +9,7 @@ Library: C:\Users\Marc\Desktop\Unity Projects\Snake-Snacks\bird\Temp\BurstOutput
 --target-framework=NetFramework
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\Users\Marc\Desktop\Unity Projects\Snake-Snacks\bird\Temp\Burst
+--debug=LineOnly
 --key-folder=C:/Program Files/Unity/Hub/Editor/2022.3.52f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=C:\Users\Marc\Desktop\Unity Projects\Snake-Snacks\bird\Library\Burst
 --output=C:\Users\Marc\Desktop\Unity Projects\Snake-Snacks\bird\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generated
@@ -105,6 +106,7 @@ Library: C:\Users\Marc\Desktop\Unity Projects\Snake-Snacks\bird\Temp\BurstOutput
 --float-mode=Fast
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\Users\Marc\Desktop\Unity Projects\Snake-Snacks\bird\Temp\Burst
+--debug=LineOnly
 --key-folder=C:/Program Files/Unity/Hub/Editor/2022.3.52f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=C:\Users\Marc\Desktop\Unity Projects\Snake-Snacks\bird\Library\Burst
 --output=C:\Users\Marc\Desktop\Unity Projects\Snake-Snacks\bird\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generated
