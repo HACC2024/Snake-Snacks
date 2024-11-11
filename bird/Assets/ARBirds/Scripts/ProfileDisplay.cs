@@ -13,6 +13,7 @@ public class ProfileDisplay : MonoBehaviour
     public TMP_Text birdsFound;
     public TMP_Text totalAchieved;
     public GameObject profileUI;
+    public Player_Information playerInfo;
     private bool toggle = true;
 
 
@@ -20,18 +21,22 @@ public class ProfileDisplay : MonoBehaviour
     {
         SetInfo();
         ToggleUI();
+        playerInfo = GameObject.Find("--------Player Information---------").GetComponent<Player_Information>();
     }
 
     private void SetInfo()
     {
-        playerName.text = PlayerPrefs.GetString("playerName").ToString();
-        level.text = PlayerPrefs.GetInt("level").ToString();
-        currentExp.text = PlayerPrefs.GetFloat("currentEXP").ToString();
-        maxExp.text = PlayerPrefs.GetFloat("maxEXP").ToString();
+        playerName.text = playerInfo.Player_Name;
+        level.text = playerInfo.Level.ToString();
+        currentExp.text = playerInfo.Current_EXP.ToString();
+        maxExp.text = playerInfo.Max_EXP.ToString();
+        birdsFound.text = playerInfo.Unique_Birds_Caught.Count.ToString();
+        totalAchieved.text = playerInfo.Achievements.Count.ToString();
     }
 
     public void ToggleUI()
     {
+        SetInfo();
         toggle = !toggle;
         profileUI.SetActive(toggle);
     }

@@ -7,18 +7,19 @@ public class MapBirdObj : MonoBehaviour
 {
     public Avidex birdEntry;
     public BirdSelectionManager bsm;
-
+    private Scene scene;
     // private float jumpForce = 3f;
     // private float minInterval = 1f;
     // private float maxInterval = 5f;
     // private Rigidbody rb;
 
     // // Start is called before the first frame update
-    // void Start()
-    // {
-    //     rb = GetComponent<Rigidbody>();
-    //     StartCoroutine(IdleAnim());
-    // }
+    void Start()
+    {
+        // rb = GetComponent<Rigidbody>();
+        // StartCoroutine(IdleAnim());
+        scene = SceneManager.GetActiveScene();
+    }
 
     // //Jumps at random time intervals
     // IEnumerator IdleAnim()
@@ -39,9 +40,15 @@ public class MapBirdObj : MonoBehaviour
 
     void OnMouseDown()
     {
-        birdEntry.Found = true;
-        bsm.selectedBird = birdEntry;
-        SceneManager.LoadScene("AR_Bird");
+        if(scene.name == "GPSTesting")
+        {
+            birdEntry.Found = true;
+            var PlayerInfo = GameObject.Find("--------Player Information---------").GetComponent<Player_Information>();
+            PlayerInfo.Add_Bird(birdEntry.Name);
+            bsm.selectedBird = birdEntry;
+            SceneManager.LoadScene("AR_Bird");
+        }
+        
     }
 
 
