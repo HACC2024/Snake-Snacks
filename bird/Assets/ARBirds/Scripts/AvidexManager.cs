@@ -25,9 +25,9 @@ public class AvidexManager : MonoBehaviour
 
     void Start()
     {
-        ShowBirdList(EcosystemType.Forest); // Start with a default ecosystem type
-        ToggleUI();
-        ToggleDetail();
+        //ShowBirdList(EcosystemType.Forest); // Start with a default ecosystem type
+        //ToggleUI();
+        //ToggleDetail();
     }
     
     public void ShowBirdList(EcosystemType ecosystemType)
