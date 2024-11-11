@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3652251508780017665}
   - component: {fileID: 1434295815219810038}
   - component: {fileID: 3401412450192473989}
+  - component: {fileID: 1049497252134599125}
   m_Layer: 0
   m_Name: DefaultBird
   m_TagString: Untagged
@@ -103,6 +104,20 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: 59ec1ed69dc472a498758bbd8ff311e1, type: 3}
+--- !u!114 &1049497252134599125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2868795614223661249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aafcde5b8a7c8844c97eae507d40a946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  birdEntry: {fileID: 0}
+  bsm: {fileID: 0}

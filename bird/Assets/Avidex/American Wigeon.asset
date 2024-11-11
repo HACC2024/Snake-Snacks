@@ -27,4 +27,5 @@ MonoBehaviour:
   Native: 1
   Found: 0
   EcosystemType: 1
-  birdPrefab: {fileID: 0}
+  birdPrefab: {fileID: 2868795614223661249, guid: 6f0445b02b74675428b41f43d3bf31d3,
+    type: 3}

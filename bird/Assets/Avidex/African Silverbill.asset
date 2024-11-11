@@ -15,7 +15,6 @@ MonoBehaviour:
   Name: African Silverbill
   Photo: {fileID: 21300000, guid: 10d2e6b342b1ee143a21d79e5a0e76b9, type: 3}
   Status: 0
-  Native: 0
   Hawaiian_Name: 
   Species_Description: "A small, slender finch found in savanna, grasslands, fields,
     and thorn scrub. Cream-colored below and brown above with darker wings, a long,
@@ -24,3 +23,8 @@ MonoBehaviour:
     agricultural areas, and marshes. Male call is a metallic \u201Ctink\u201D or
     \u201Ctsip\u201D; female\u2019s is a double note. Song is a peaking series of
     notes ending in a trill. Native to Africa; introduced to the Hawaiian Islands. "
+  Native: 0
+  Found: 0
+  EcosystemType: 0
+  birdPrefab: {fileID: 2868795614223661249, guid: 6f0445b02b74675428b41f43d3bf31d3,
+    type: 3}

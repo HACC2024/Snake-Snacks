@@ -10,7 +10,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class Bird_Manager : MonoBehaviour
 {
     public XROrigin XR_Origin;
-    public GameObject Bird_Prefab;
+    public BirdSelectionManager bsm;
+    public GameObject BirdPrefab;
     [SerializeField] private ARPlaneManager planeManager;
     public List<ARAnchor> Anchors = new List<ARAnchor>();
 
@@ -21,20 +22,29 @@ public class Bird_Manager : MonoBehaviour
     {
         planeManager = GetComponent<ARPlaneManager>();
         anchorManager = GetComponent<ARAnchorManager>();
+        if(bsm.selectedBird != null)
+        {
+            BirdPrefab = bsm.selectedBird.birdPrefab;
+            Spawn_Bird(BirdPrefab);
+        }
+        
 
-        Spawn_Bird();
     }
 
-    public void Spawn_Bird()
+    public void Spawn_Bird(GameObject BirdObj)
     {
-        var bird = Instantiate(Bird_Prefab, new Vector3(0, 5, 0), Quaternion.identity);
+        var bird = Instantiate(BirdObj, new Vector3(0, 5, 0), Quaternion.identity);
         bird.AddComponent<ARAnchor>();
+        if(!bird.GetComponent<Bird_Movement>())
+        {
+            bird.AddComponent<Bird_Movement>();
+        }
         bird.GetComponent<Bird_Movement>().Target_Position(new Vector3(
             Random.Range(-3, 3),
             Random.Range(-3, 3),
             Random.Range(-3, 3)));
         bird.GetComponent<Bird_Movement>().Circulate = true;
         Camera.main.GetComponent<Camera_Manager>().objCollider = bird.GetComponentInChildren<Collider>();
-        Camera.main.GetComponent<Camera_Manager>().Bird_Name = bird.name;
+        Camera.main.GetComponent<Camera_Manager>().Bird_Name = bsm.selectedBird.Name;
     }
 }

@@ -5559,7 +5559,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2015651238
 Transform:
   m_ObjectHideFlags: 0
@@ -5621,6 +5621,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aviman: {fileID: 617583286}
+  coastBirds: []
+  mountainBirds: []
+  forestBirds: []
+  urbanBirds: []
   minSpawn: 3
   maxSpawn: 5
   spawnRadius: 5

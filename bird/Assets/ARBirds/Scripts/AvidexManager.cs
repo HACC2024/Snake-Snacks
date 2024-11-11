@@ -13,7 +13,7 @@ public class AvidexManager : MonoBehaviour
     public GameObject detailView;
     private EcosystemType currentEcosystem;
     public GameObject AvidexUI;
-    private bool toggle = false;
+    private bool toggle = true;
 
     //Variables for detailed bird entries
     public TMP_Text name;
