@@ -12,12 +12,12 @@ using UnityEngine.SceneManagement;
 
 public class Player_Information : MonoBehaviour
 {
-    [SerializeField] private string Player_Name;
-    [SerializeField] private int Level;
-    [SerializeField] private float Current_EXP;
-    [SerializeField] private float Max_EXP;
-    [SerializeField] private List<string> Unique_Birds_Caught;
-    [SerializeField] private List<string> Achievements;
+    [SerializeField] public string Player_Name;
+    [SerializeField] public int Level;
+    [SerializeField] public float Current_EXP;
+    [SerializeField] public float Max_EXP;
+    [SerializeField] public List<string> Unique_Birds_Caught;
+    [SerializeField] public List<string> Achievements;
 
     [SerializeField] private GameObject No_Token_Path;
     [SerializeField] private GameObject Attempting_Log_In;

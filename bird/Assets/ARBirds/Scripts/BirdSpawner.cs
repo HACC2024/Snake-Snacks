@@ -5,15 +5,15 @@ using UnityEngine;
 public class BirdSpawner : MonoBehaviour
 {
     public AvidexManager aviman;
-    private List<GameObject> coastBirds;  // Interactable GameObjects to spawn
-    private List<GameObject> mountainBirds;
-    private List<GameObject> forestBirds;
-    private List<GameObject> urbanBirds;
+    [SerializeField] private List<GameObject> coastBirds;  // Interactable GameObjects to spawn
+    [SerializeField]private List<GameObject> mountainBirds;
+    [SerializeField]private List<GameObject> forestBirds;
+    [SerializeField]private List<GameObject> urbanBirds;
     public int minSpawn = 3;        // Minimum number of objects to spawn
     public int maxSpawn = 5;       // Maximum number of objects to spawn
     public float spawnRadius = 20f;      // Radius around the player where objects can spawn
     public float destructionRadius = 25f; // Radius around player to destroy objects
-    public float spawnScale = 3f;
+    public float spawnScale = 1f;
     private List<GameObject> spawnedObjects = new List<GameObject>();  // List to track spawned objects
     private GameObject player;           // Reference to the player GameObject
     public RegionChecker ecoCheck;
@@ -71,9 +71,11 @@ public class BirdSpawner : MonoBehaviour
             // Check for collisions when spawning so birds do not overlap
             if(!Physics.CheckSphere(spawnPosition, 2f))
             {
+                // Set a random y-axis rotation
+                Quaternion randomRotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
                 // Instantiate the object at the random position
                 birdToSpawn.transform.localScale = new Vector3(spawnScale, spawnScale, spawnScale);
-                GameObject spawnedObject = Instantiate(birdToSpawn, spawnPosition, Quaternion.identity);
+                GameObject spawnedObject = Instantiate(birdToSpawn, spawnPosition, randomRotation);
                 spawnedObjects.Add(spawnedObject);
             }
             
@@ -109,7 +111,7 @@ public class BirdSpawner : MonoBehaviour
         }
     }
 
-    private void SortBirds()
+    public void SortBirds()
     {
         foreach(var bird in aviman.allEntries)
         {
