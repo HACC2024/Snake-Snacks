@@ -28,19 +28,25 @@ public class Camera_Manager : MonoBehaviour
     [SerializeField] private TMP_InputField Guess;
     public string Bird_Name;
     [SerializeField] private TMP_Text Display_EXPScore;
+    [SerializeField] bool OnOff = false;
     private void Start()
     {
         cam = Camera.main;
         Tap.Enable();
+        OnOff = true;
     }
 
     public void Update()
     {
-        Timer -= Time.deltaTime;
-        Timer_Text.text = Timer.ToString("0.00");
+        if (OnOff)
+        {
+            Timer -= Time.deltaTime;
+            Timer_Text.text = Timer.ToString("0.00");
+        }
 
         if(Timer <= 0)
         {
+            Load_GPS();
             //Escaped situation
         }
     }
@@ -64,6 +70,7 @@ public class Camera_Manager : MonoBehaviour
             //Timed = 1000 / elapsed
             //Correct bird ID = 1000
 
+            OnOff = false;
             Timer_Text.gameObject.SetActive(false);
             StartCoroutine(Capture_Screen());
             Sequence[Sequence_Index].gameObject.SetActive(true);
