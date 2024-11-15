@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1276277387811789338
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7875354320832020211}
-  m_Layer: 0
-  m_Name: Center
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7875354320832020211
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1276277387811789338}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3903947, y: -2.3677278, z: -0.277133}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8065468657630089655}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2868795614223661249
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,7 +12,6 @@ GameObject:
   - component: {fileID: 3652251508780017665}
   - component: {fileID: 1434295815219810038}
   - component: {fileID: 3401412450192473989}
-  - component: {fileID: 1049497252134599125}
   m_Layer: 0
   m_Name: DefaultBird
   m_TagString: Untagged
@@ -63,8 +31,7 @@ Transform:
   m_LocalPosition: {x: -4.223095, y: 6.8493805, z: 3.248166}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8065468657630089655}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3652251508780017665
@@ -139,68 +106,3 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: 59ec1ed69dc472a498758bbd8ff311e1, type: 3}
---- !u!114 &1049497252134599125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2868795614223661249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aafcde5b8a7c8844c97eae507d40a946, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  birdEntry: {fileID: 0}
-  bsm: {fileID: 11400000, guid: af6912028105d95488d05e8e6026a844, type: 2}
---- !u!1 &7410277564818951949
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8065468657630089655}
-  - component: {fileID: 211308987984801637}
-  m_Layer: 0
-  m_Name: BirdDefault
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8065468657630089655
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7410277564818951949}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.57480264, y: 0.5038638, z: 0.1385665}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7875354320832020211}
-  m_Father: {fileID: 1450878541088161023}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &211308987984801637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7410277564818951949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 379ebc1d619ad444fa21dfd2a12908ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bird: {fileID: 0}
-  Circulate: 0
-  ExtendRetract: 0
-  Jumping: 0
-  Circulate_Center: {fileID: 1276277387811789338}
-  objCollider: {fileID: 0}
