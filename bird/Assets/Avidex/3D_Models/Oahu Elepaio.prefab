@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 379ebc1d619ad444fa21dfd2a12908ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bird: {fileID: 7300638154081153067}
+  _bird: {fileID: 190829028751349532}
   Circulate: 0
   ExtendRetract: 0
   Jumping: 0

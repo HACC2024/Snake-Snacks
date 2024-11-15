@@ -12,6 +12,7 @@ public class Authenthication : MonoBehaviour
     [SerializeField] private TMP_InputField Password;
     [SerializeField] private TMP_InputField ReType_Password;
     [SerializeField] private TMP_InputField Screen_Name;
+    [SerializeField] private TMP_Text Error;
 
     [SerializeField] private GameObject Sign_Up;
     [SerializeField] private GameObject Sign_In;
@@ -72,6 +73,7 @@ public class Authenthication : MonoBehaviour
             {
                 // Compare error code to AuthenticationErrorCodes
                 // Notify the player with the proper error message
+                
                 Debug.LogException(ex);
             }
             catch (RequestFailedException ex)
@@ -83,6 +85,7 @@ public class Authenthication : MonoBehaviour
         }
         else
         {
+            Error.text = "Passwords don't match";
             Debug.Log("Passwords don't match");
         }
         

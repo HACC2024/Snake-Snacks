@@ -88,7 +88,7 @@ public class BirdSpawner : MonoBehaviour
         Vector2 randomPoint = Random.insideUnitCircle * radius;
 
         // Convert the 2D random point to 3D, relative to the player's position
-        Vector3 spawnPosition = new Vector3(randomPoint.x, 0, randomPoint.y) + player.transform.position;
+        Vector3 spawnPosition = new Vector3(randomPoint.x, 2, randomPoint.y) + player.transform.position;
 
         return spawnPosition;
     }
