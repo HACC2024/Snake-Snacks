@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AchievementManager : MonoBehaviour
 {
+    public AchievementUI achievementDisplay;
+    public Transform contentPanel;
+    public GameObject entryPrefab;
     private AchievementList achievementList;
     private Player_Information playerInfo;
 
@@ -29,14 +32,23 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
-    private void LoadAchievements()
+    public void ShowAchievements()
     {
-        foreach (var achievement in achievementList.achievements)
+        foreach(var achievement in achievementList.achievements)
         {
-            if (achievement.Unlocked)
-            {
-                // Achievement already unlocked, handle accordingly
-            }
+            GameObject entry = Instantiate(entryPrefab, contentPanel);
+
         }
     }
+
+    // private void LoadAchievements()
+    // {
+    //     foreach (var achievement in achievementList.achievements)
+    //     {
+    //         if (achievement.Unlocked)
+    //         {
+    //             // Achievement already unlocked, handle accordingly
+    //         }
+    //     }
+    // }
 }

@@ -6834,6 +6834,52 @@ MonoBehaviour:
   profileUI: {fileID: 2015651237}
   playerInfo: {fileID: 1993726146281456447, guid: be87a0df490c4364cb370714ab118449,
     type: 3}
+--- !u!1 &2018121871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2018121873}
+  - component: {fileID: 2018121872}
+  m_Layer: 0
+  m_Name: AchievementManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2018121872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018121871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f6c691458c852741a347bc56cb2eb38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  achievementDisplay: {fileID: 2019410339371275487, guid: 7b67106bcb3fba8448c6a8b2539ef07f,
+    type: 3}
+--- !u!4 &2018121873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018121871}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 600, y: 1320, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!21 &2043795403
 Material:
   serializedVersion: 8
@@ -7462,7 +7508,7 @@ PrefabInstance:
     - target: {fileID: 1356815175180204393, guid: 90de74715b3a83a4fb2d92ba5b67978a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00012207031
+      value: -0.00015258789
       objectReference: {fileID: 0}
     - target: {fileID: 1527983705489089784, guid: 90de74715b3a83a4fb2d92ba5b67978a,
         type: 3}
@@ -7682,12 +7728,17 @@ PrefabInstance:
     - target: {fileID: 7744235813907608992, guid: 90de74715b3a83a4fb2d92ba5b67978a,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7744235813907608992, guid: 90de74715b3a83a4fb2d92ba5b67978a,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: -17
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033808664139522075, guid: 90de74715b3a83a4fb2d92ba5b67978a,
+        type: 3}
+      propertyPath: m_Value
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8646116212959405370, guid: 90de74715b3a83a4fb2d92ba5b67978a,
         type: 3}
@@ -7749,3 +7800,4 @@ SceneRoots:
   - {fileID: 914754107}
   - {fileID: 3968050817201415252}
   - {fileID: 1044562397}
+  - {fileID: 2018121873}
