@@ -27,8 +27,8 @@ public class Bird_Manager : MonoBehaviour
             BirdPrefab = bsm.selectedBird.birdPrefab;
             Spawn_Bird(BirdPrefab);
         }
-        
 
+        //Spawn_Bird(BirdPrefab);
     }
 
     public void Spawn_Bird(GameObject BirdObj)
@@ -44,7 +44,8 @@ public class Bird_Manager : MonoBehaviour
             Random.Range(-3, 3),
             Random.Range(-3, 3)));
         bird.GetComponent<Bird_Movement>().Circulate = true;
+        bird.GetComponent<Bird_Movement>().Extend_From_Center();
         Camera.main.GetComponent<Camera_Manager>().objCollider = bird.GetComponentInChildren<Collider>();
-        Camera.main.GetComponent<Camera_Manager>().Bird_Name = bsm.selectedBird.Name;
+        //Camera.main.GetComponent<Camera_Manager>().Bird_Name = bsm.selectedBird.Name;
     }
 }

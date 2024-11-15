@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,17 @@ public class MapBirdObj : MonoBehaviour
         // rb = GetComponent<Rigidbody>();
         // StartCoroutine(IdleAnim());
         scene = SceneManager.GetActiveScene();
+        StartCoroutine(IdleAnim());
+    }
+
+    IEnumerator IdleAnim()
+    {
+        this.gameObject.transform.DOLocalJump(
+            this.gameObject.transform.localPosition, 2, 1, 1, false);
+        this.gameObject.transform.DOLocalRotate(new Vector3(0, Random.Range(360, 720), 0), 1, RotateMode.FastBeyond360);
+        yield return null;
+        //yield return new WaitForSeconds(Random.Range(5, 10));
+        //StartCoroutine(IdleAnim());
     }
 
     // //Jumps at random time intervals
@@ -48,7 +60,6 @@ public class MapBirdObj : MonoBehaviour
             bsm.selectedBird = birdEntry;
             SceneManager.LoadScene("AR_Bird");
         }
-        
     }
 
 
