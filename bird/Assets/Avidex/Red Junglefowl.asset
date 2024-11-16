@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86faebb0e7fd5694b973cde1f6bb681d, type: 3}
   m_Name: Red Junglefowl
   m_EditorClassIdentifier: 
-  Name: Red Junglefown
+  Name: Red Jungle Fowl
   Photo: {fileID: 21300000, guid: b7c945fa745f2294d936b66e6fe5c3f2, type: 3}
   Status: 0
   Hawaiian_Name: Moa
