@@ -12,7 +12,7 @@ public class Bird_Movement : MonoBehaviour
     [SerializeField] bool ExtendRetract = false;
     [SerializeField] bool Jumping = false;
     [SerializeField] GameObject Circulate_Center;
-    [SerializeField] private Collider objCollider;
+    //[SerializeField] private Collider objCollider;
     void Awake()
     {
         //GameObject.Find("Circulate").gameObject.
@@ -26,17 +26,17 @@ public class Bird_Movement : MonoBehaviour
         //GameObject.Find("Reposition").gameObject.
         //    GetComponent<Button>().onClick.AddListener(
         //    () => Different_Location_Procedure());
-        GameObject.Find("Main Camera").GetComponent<Camera_Manager>().objCollider = objCollider;
+        //GameObject.Find("Main Camera").GetComponent<Camera_Manager>().objCollider = objCollider;
     }
 
     private void Update()
     {
-        if (ExtendRetract) { StartCoroutine(Extend_From_Center()); }
+        //if (ExtendRetract) { StartCoroutine(Extend_From_Center()); }
         if (Circulate) 
         {
-            float smooth = 100.0f;
+            float smooth = Random.Range(25, 75);
             Circulate_Center.transform.RotateAround(
-                Circulate_Center.transform.position, Vector3.up, Time.deltaTime * smooth);
+                Circulate_Center.transform.position, Vector3.down, Time.deltaTime * smooth);
         }
 
         if(Jumping) 
@@ -48,12 +48,12 @@ public class Bird_Movement : MonoBehaviour
 
     public void Different_Location_Procedure()
     {
-        if (Circulate || ExtendRetract)
-        {
-            Circulate = false;
-            ExtendRetract = false;
-            if(_bird.transform.position != new Vector3(0, 0, 0)) { Return_To_Center(); }
-        }
+        //if (Circulate || ExtendRetract)
+        //{
+        //    Circulate = false;
+        //    ExtendRetract = false;
+        //    if(_bird.transform.position != new Vector3(0, 0, 0)) { Return_To_Center(); }
+        //}
 
         var cam = Camera.main.transform.position;
         var loc = new Vector3(
@@ -74,17 +74,15 @@ public class Bird_Movement : MonoBehaviour
         Invoke("Different_Location_Procedure", Random.Range(5.0f, 10.0f));
     }
 
-    IEnumerator Extend_From_Center()
+    public void Extend_From_Center()
     {
         _bird.transform.DOLocalMoveX(2, 2, false);
-        yield return new WaitForSeconds(5);
-        Circulate = true;
     }
 
-    IEnumerator Return_To_Center()
-    {
-        _bird.transform.DOLocalMove(new Vector3(0, 0, 0), 2, false);
-        yield return new WaitForSeconds(5);
-        Circulate = false;
-    }
+    //IEnumerator Return_To_Center()
+    //{
+    //    _bird.transform.DOLocalMove(new Vector3(0, 0, 0), 2, false);
+    //    yield return new WaitForSeconds(5);
+    //    Circulate = false;
+    //}
 }

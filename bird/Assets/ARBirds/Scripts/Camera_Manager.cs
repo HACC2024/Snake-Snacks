@@ -29,6 +29,7 @@ public class Camera_Manager : MonoBehaviour
     public string Bird_Name;
     [SerializeField] private TMP_Text Display_EXPScore;
     [SerializeField] bool OnOff = false;
+    [SerializeField] private TMP_Text Escaped_Text;
     private void Start()
     {
         cam = Camera.main;
@@ -46,9 +47,17 @@ public class Camera_Manager : MonoBehaviour
 
         if(Timer <= 0)
         {
-            Load_GPS();
+            StartCoroutine(Escape_Procedure());
+            //Load_GPS();
             //Escaped situation
         }
+    }
+
+    IEnumerator Escape_Procedure()
+    {
+        StartCoroutine(FadeInText());
+        yield return new WaitForSeconds(3);
+        Load_GPS();
     }
 
 
@@ -129,6 +138,16 @@ public class Camera_Manager : MonoBehaviour
 
         Fade.color = new Color(1, 1, 1, 1);
         Fade.gameObject.SetActive(false);
+    }
+
+    IEnumerator FadeInText()
+    {
+        Escaped_Text.gameObject.SetActive(true);
+        for (float i = 0; i <= 1; i -= Time.deltaTime)
+        {
+            Escaped_Text.color = new Color(1, 1, 1, i);
+            yield return null;
+        }
     }
 
     public void Save_Image()

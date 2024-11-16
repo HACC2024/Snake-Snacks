@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5408037326021802409}
   - component: {fileID: 542274293083693368}
   m_Layer: 0
-  m_Name: HouseSparrow
+  m_Name: HouseSparrow 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

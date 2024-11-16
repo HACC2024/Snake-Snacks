@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
@@ -11,6 +12,7 @@ public class PlaceTrackedImages : MonoBehaviour
     private ARTrackedImageManager _trackedImageManager;
     public GameObject[] ArPrefabs;
     private readonly Dictionary<string, GameObject> _instantiatedPrefabs = new Dictionary<string, GameObject>();
+    [SerializeField] private TMP_Text Debug_Text;
 
     private void Awake()
     {
@@ -32,6 +34,7 @@ public class PlaceTrackedImages : MonoBehaviour
         foreach (var trackedImage in eventArgs.added)
         {
             var imageName = trackedImage.referenceImage.name;
+            Debug_Text.text = trackedImage.referenceImage.name;
             foreach (var curPrefab in ArPrefabs)
             {
                 if(string.Compare(curPrefab.name, imageName, StringComparison.OrdinalIgnoreCase) == 0
@@ -54,16 +57,5 @@ public class PlaceTrackedImages : MonoBehaviour
             Destroy(_instantiatedPrefabs[trackedImage.referenceImage.name]);
             _instantiatedPrefabs.Remove(trackedImage.referenceImage.name);
         }
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
