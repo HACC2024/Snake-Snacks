@@ -13,9 +13,9 @@ using UnityEngine.SceneManagement;
 public class Player_Information : MonoBehaviour
 {
     [SerializeField] public string Player_Name;
-    [SerializeField] public int Level;
-    [SerializeField] public float Current_EXP;
-    [SerializeField] public float Max_EXP;
+    [SerializeField] public int Level = 1;
+    [SerializeField] public float Current_EXP = 0;
+    [SerializeField] public float Max_EXP = 5;
     [SerializeField] public List<string> Unique_Birds_Caught;
     [SerializeField] public List<string> Achievements;
 
@@ -88,7 +88,7 @@ public class Player_Information : MonoBehaviour
         }
     }
 
-    private void Online_Initalize()
+    public void Online_Initalize()
     {
         Player_Name = AuthenticationService.Instance.PlayerName;
         Load_Data();

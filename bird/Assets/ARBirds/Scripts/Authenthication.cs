@@ -20,6 +20,8 @@ public class Authenthication : MonoBehaviour
     [SerializeField] private GameObject After_SignUp;
     [SerializeField] private GameObject Delete_Toggler;
     [SerializeField] private TMP_Text Error_Message;
+
+    [SerializeField] private Player_Information Player_Information;
     //async void Awake()
     //{
     //    try
@@ -102,6 +104,7 @@ public class Authenthication : MonoBehaviour
         {
             await AuthenticationService.Instance.UpdatePlayerNameAsync(Screen_Name.text);
             Debug.Log("Name set");
+            Player_Information.Online_Initalize();
             SceneManager.LoadScene("GPSTesting", LoadSceneMode.Single);
         }
         catch (AuthenticationException ex)
@@ -126,6 +129,7 @@ public class Authenthication : MonoBehaviour
         {
             await AuthenticationService.Instance.SignInWithUsernamePasswordAsync(Username.text, Password.text);
             Debug.Log("SignIn is successful.");
+            Player_Information.Online_Initalize();
             SceneManager.LoadScene("GPSTesting", LoadSceneMode.Single);
         }
         catch (AuthenticationException ex)
