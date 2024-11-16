@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AchievementManager : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class AchievementManager : MonoBehaviour
 
     [Header("Notifications")]
     public GameObject notificationPrefab;
-    public Transform notifiationParent;
+    public Transform notificationParent;
 
     [Header("UI Settings")]
     public GameObject entryPrefab;
@@ -31,19 +32,42 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        playerInfo = GameObject.Find("--------Player Information---------").GetComponent<Player_Information>();
+    }
+
     void Update()
     {
-        if(playerInfo.Unique_Birds_Caught.Count >= 1 && IsAchievementUnlocked("FirstBird") == false)
+        if(playerInfo.Unique_Birds_Caught.Count >= 1 && playerInfo.Current_EXP > 0 && IsAchievementUnlocked("FirstBird") == false)
         {
-            UnlockAchievement("FirstBird");
+            Scene scene = SceneManager.GetActiveScene();
+            if(scene.name == "GPSTesting")
+            {
+               UnlockAchievement("FirstBird"); 
+            }
         }
     }
 
-    //UI METHODS
+    public void UnlockAchievement(string achievementID)
+    {
+        foreach (var achievement in achievementList)
+        {
+            if (achievement.AchievementID == achievementID)
+            {
+                DisplayAchievementNotif(achievement);
+                achievement.Unlocked = true;
+                unlockedAchievements.Add(achievementID);
+                playerInfo.Add_Achievement(achievementID);
+                break;
+            }
+        }
+    }
 
     public void DisplayAchievementNotif(Achievement achievement)
     {
-        GameObject notification = Instantiate(notificationPrefab, notifiationParent);
+        GameObject notification = Instantiate(notificationPrefab, notificationParent);
+        Debug.Log("notif displayed");
         AchievementUI notifUI = notification.GetComponent<AchievementUI>();
         notifUI.SetNotification(achievement);
         Destroy(notification, 3f);
@@ -65,22 +89,22 @@ public class AchievementManager : MonoBehaviour
 
     // METHODS WITH PLAYER INFORMATION
 
-    public void UnlockAchievement(string achievementID)
-    {
-        foreach (var achievement in achievementList)
-        {
-            if (achievement.AchievementID == achievementID)
-            {
-                //Logic for unlocking the achievement
-                DisplayAchievementNotif(achievement);
-                //save achievement
-                achievement.Unlocked = true;
-                unlockedAchievements.Add(achievementID);
-                playerInfo.Add_Achievement(achievementID);
-                break;
-            }
-        }
-    }
+    // public void UnlockAchievement(string achievementID)
+    // {
+    //     Debug.Log($"Searching for achievement: {achievementID}");
+    //     foreach (var achievement in achievementList)
+    //     {
+    //         if (achievement.AchievementID == achievementID)
+    //         {
+    //             //Logic for unlocking the achievement
+    //             DisplayAchievementNotif(achievement);
+    //             //save achievement
+    //             achievement.Unlocked = true;
+    //             unlockedAchievements.Add(achievementID);
+    //             playerInfo.Add_Achievement(achievementID);
+    //         }
+    //     }
+    // }
 
     public bool IsAchievementUnlocked(string achievementID)
     {

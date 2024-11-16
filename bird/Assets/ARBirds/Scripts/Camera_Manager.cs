@@ -185,7 +185,7 @@ public class Camera_Manager : MonoBehaviour
         Sequence[Sequence_Index].gameObject.SetActive(true);
 
         Display_EXPScore.text = "Score: " + Score + "  EXP: " + Score / 1000;
-        //GameObject.FindObjectOfType<Player_Information>().Add_EXP(Score);
+        GameObject.FindObjectOfType<Player_Information>().Add_EXP(Score);
         //GameObject.FindObjectOfType<Player_Information>().Add_Bird(Bird_Name);
         StartCoroutine(Tap_Next());
     }
