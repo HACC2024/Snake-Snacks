@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Mapbox/Examples/0_PrefabScenes/Location-basedGame.unity
     guid: 42f6aa7ce7a604f16ade319663f46ceb
-  - enabled: 1
+  - enabled: 0
     path: Assets/ARBirds/Scenes/AR_Marker.unity
     guid: 8bbafcb3fa92ef345a583b4f76d29c56
   - enabled: 1
