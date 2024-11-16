@@ -18,6 +18,7 @@ public class Authenthication : MonoBehaviour
     [SerializeField] private GameObject After_SignIn;
     [SerializeField] private GameObject After_SignUp;
     [SerializeField] private GameObject Delete_Toggler;
+    [SerializeField] private TMP_Text Error_Message;
     //async void Awake()
     //{
     //    try
@@ -28,6 +29,7 @@ public class Authenthication : MonoBehaviour
     //    {
     //        Debug.LogException(e);
     //    }
+    //    Error_Message = GameObject.Find("Error Message").GetComponent<TMP_Text>();
     //}
 
     // Setup authentication event handlers if desired
@@ -73,17 +75,20 @@ public class Authenthication : MonoBehaviour
                 // Compare error code to AuthenticationErrorCodes
                 // Notify the player with the proper error message
                 Debug.LogException(ex);
+                Error_Message.text = ex.Message;
             }
             catch (RequestFailedException ex)
             {
                 // Compare error code to CommonErrorCodes
                 // Notify the player with the proper error message
                 Debug.LogException(ex);
+                Error_Message.text = ex.Message;
             }
         }
         else
         {
             Debug.Log("Passwords don't match");
+            Error_Message.text = "Passwords don't match";
         }
         
     }
@@ -100,12 +105,14 @@ public class Authenthication : MonoBehaviour
         {
             //Couldn't authenticate, relog
             Debug.LogException(ex);
+            Error_Message.text = ex.Message;
             return;
         }
         catch (RequestFailedException ex)
         {
             //Not signed in/request failed
             Debug.LogException(ex);
+            Error_Message.text = ex.Message;
             return;
         }
     }
@@ -123,12 +130,14 @@ public class Authenthication : MonoBehaviour
             // Compare error code to AuthenticationErrorCodes
             // Notify the player with the proper error message
             Debug.LogException(ex);
+            Error_Message.text = ex.Message;
         }
         catch (RequestFailedException ex)
         {
             // Compare error code to CommonErrorCodes
             // Notify the player with the proper error message
             Debug.LogException(ex);
+            Error_Message.text = ex.Message;
         }
     }
 }

@@ -152,14 +152,20 @@ public class Camera_Manager : MonoBehaviour
 
     public void Save_Image()
     {
-        byte[] bytes = Captured_Image.sprite.texture.EncodeToPNG();
+        //byte[] bytes = Captured_Image.sprite.texture.EncodeToPNG();
+        //string fileName = DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png";
+        //string filePath = Path.Combine(Application.persistentDataPath, fileName);
+        //Debug.Log(filePath);
+
+        //File.WriteAllBytes(filePath, bytes);
+
+        //Destroy(Captured_Image);
+        Texture2D ss = Captured_Image.sprite.texture;
+        //ss.ReadPixels(Captured_Image.sprite.rect, 0, 0);
+        //ss.Apply();
+
         string fileName = DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png";
-        string filePath = Path.Combine(Application.persistentDataPath, fileName);
-        Debug.Log(filePath);
-
-        File.WriteAllBytes(filePath, bytes);
-
-        Destroy(Captured_Image);
+        Debug.Log("Permission result: " + NativeGallery.SaveImageToGallery(ss, Application.productName + " Captures", fileName));
     }
 
     IEnumerator Tap_Next()

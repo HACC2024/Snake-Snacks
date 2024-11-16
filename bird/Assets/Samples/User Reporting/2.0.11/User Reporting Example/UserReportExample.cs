@@ -10,6 +10,9 @@ using UnityEngine.UI;
 using System.IO;
 using DG.Tweening;
 using System;
+using static Unity.VisualScripting.Member;
+using Mapbox.Unity.Location;
+using Mapbox.Examples;
 
 public class UserReportExample : MonoBehaviour
 {
@@ -53,6 +56,14 @@ public class UserReportExample : MonoBehaviour
     bool m_IsSubmitting;
 
     [SerializeField] private RawImage Thumbnail;
+    //private string _filePath;
+    [SerializeField] private Image _image;
+    private bool Send_Location = false;
+
+    public void Send_Location_With_Report()
+    {
+        Send_Location = !Send_Location;
+    }
 
     async void Start()
     {
@@ -111,10 +122,11 @@ public class UserReportExample : MonoBehaviour
         NativeGallery.Permission permission = NativeGallery.GetImageFromGallery((path) =>
         {
             Debug.Log("Image path: " + path);
+            //_filePath = path;
             if (path != null)
             {
                 // Create Texture from selected image
-                maxSize = SystemInfo.maxTextureSize;
+                //maxSize = SystemInfo.maxTextureSize;
                 Texture2D texture = NativeGallery.LoadImageAtPath(path, maxSize);
                 if (texture == null)
                 {
@@ -123,26 +135,36 @@ public class UserReportExample : MonoBehaviour
                 }
                 Thumbnail.texture = texture;
 
-                //// Assign texture to a temporary quad and destroy it after 5 seconds
-                //GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
-                //quad.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2.5f;
-                //quad.transform.forward = Camera.main.transform.forward;
-                //quad.transform.localScale = new Vector3(1f, texture.height / (float)texture.width, 1f);
+                RenderTexture renderTex = RenderTexture.GetTemporary(
+                Thumbnail.texture.width,
+                Thumbnail.texture.height,
+                0,
+                RenderTextureFormat.Default
+                ,
+                RenderTextureReadWrite.Linear);
 
-                //Material material = quad.GetComponent<Renderer>().material;
-                //if (!material.shader.isSupported) // happens when Standard shader is not included in the build
-                //    material.shader = Shader.Find("Legacy Shaders/Diffuse");
+                Graphics.Blit(Thumbnail.texture, renderTex);
+                RenderTexture previous = RenderTexture.active;
+                RenderTexture.active = renderTex;
+                Texture2D readableText = new Texture2D(Thumbnail.texture.width, Thumbnail.texture.height);
+                readableText.ReadPixels(new Rect(0, 0, Thumbnail.texture.width, Thumbnail.texture.height), 0, 0);
+                readableText.Apply();
 
-                //material.mainTexture = texture;
+                _image.sprite = Sprite.Create(texture, new Rect(0, 0, Thumbnail.texture.width, Thumbnail.texture.height), new Vector2(0, 0));
+                _image.color = new Color(1, 1, 1, 1);
 
-                //Destroy(quad, 5f);
+                UserReportingService.Instance.TakeScreenshot(texture.width, texture.height, texture);
+                SetThumbnail(UserReportingService.Instance.GetLatestScreenshot());
 
-                //// If a procedural texture is not destroyed manually, 
-                //// it will only be freed after a scene change
-                //Destroy(texture, 5f);
-                byte[] bytes = texture.EncodeToPNG();
+                byte[] bytes = readableText.EncodeToPNG();
                 string fileName = DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png";
-                UserReportingService.Instance.AddAttachmentToReport(fileName, path, bytes);
+                _image.sprite = Sprite.Create(readableText, new Rect(0, 0, Thumbnail.texture.width, Thumbnail.texture.height), new Vector2(0, 0));
+                _image.color = new Color(1, 1, 1, 1);
+                UserReportingService.Instance.AddAttachmentToReport("Bird file", fileName, bytes, "image/png");
+
+                RenderTexture.active = previous;
+                RenderTexture.ReleaseTemporary(renderTex);
+                UserReportingService.Instance.CreateNewUserReport();
             }
         });
 
@@ -163,12 +185,12 @@ public class UserReportExample : MonoBehaviour
 
         // This example adds a custom attachment, an empty JSON file, to the ongoing report
         // Note that we must provide the appropriate IANA media type for the JSON file: "application/json"
-        string content = "{}";
-        UserReportingService.Instance.AddAttachmentToReport("Sample Attachment JSON", "SampleAttachment.json",
-            Encoding.UTF8.GetBytes(content), "application/json");
+        //string content = "{}";
+        //UserReportingService.Instance.AddAttachmentToReport("Sample Attachment JSON", "SampleAttachment.json",
+        //    Encoding.UTF8.GetBytes(content));
 
         // The thumbnail image in the GUI simply uses the latest screenshot available, if any
-        SetThumbnail(UserReportingService.Instance.GetLatestScreenshot());
+        //SetThumbnail(UserReportingService.Instance.GetLatestScreenshot());
 
         // Now we create the report using the contents of the submission form along with the attachment and thumnail
         UserReportingService.Instance.CreateNewUserReport();
@@ -192,7 +214,17 @@ public class UserReportExample : MonoBehaviour
         // The summary of the User Report is used as the report's label when browsing reports on the dashboard
         if (m_summaryInput != null)
         {
-            UserReportingService.Instance.SetReportSummary(m_summaryInput.text);
+            if (Send_Location)
+            {
+                Debug.Log("Sending location: " + LocationProviderFactory.Instance.DefaultLocationProvider.CurrentLocation.LatitudeLongitude);
+                UserReportingService.Instance.SetReportSummary(m_summaryInput.text
+                    + "\nCurrent GPS latlong: " + LocationProviderFactory.Instance.DefaultLocationProvider.CurrentLocation.LatitudeLongitude);
+            }
+            else
+            {
+                UserReportingService.Instance.SetReportSummary(m_summaryInput.text);
+            }
+            //UserReportingService.Instance.SetReportSummary(m_summaryInput.text);
         }
 
         // User Reports can be sorted on the dashboard via Dimensions and Dimension Values
@@ -214,6 +246,36 @@ public class UserReportExample : MonoBehaviour
         {
             m_userReportSubmitting.Invoke();
         }
+
+        //RenderTexture renderTex = RenderTexture.GetTemporary(
+        //        Thumbnail.texture.width,
+        //        Thumbnail.texture.height,
+        //        0,
+        //        RenderTextureFormat.Default
+        //        ,
+        //        RenderTextureReadWrite.Linear);
+
+        //Graphics.Blit(Thumbnail.texture, renderTex);
+        //RenderTexture previous = RenderTexture.active;
+        //RenderTexture.active = renderTex;
+        //Texture2D readableText = new Texture2D(Thumbnail.texture.width, Thumbnail.texture.height);
+        //readableText.ReadPixels(new Rect(0, 0, renderTex.width, renderTex.height), 0, 0);
+        //readableText.Apply();
+
+        ////_image.sprite = Sprite.Create(readableText, new Rect(0, 0, renderTex.width, renderTex.height), new Vector2(0, 0));
+        ////_image.color = new Color(1, 1, 1, 1);
+
+        //UserReportingService.Instance.TakeScreenshot(readableText.width, readableText.height, Camera.main);
+        //byte[] bytes = readableText.EncodeToPNG();
+        //SetThumbnail(readableText);
+        //string fileName = DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png";
+        //_image.sprite = Sprite.Create(readableText, new Rect(0, 0, Thumbnail.texture.width, Thumbnail.texture.height), new Vector2(0, 0));
+        //_image.color = new Color(1, 1, 1, 1);
+        //Debug.Log(bytes);
+        //UserReportingService.Instance.AddAttachmentToReport("Bird file", fileName, bytes, "image/png");
+
+        //RenderTexture.active = previous;
+        //RenderTexture.ReleaseTemporary(renderTex);
 
         // Sending a report offers two optional callbacks: one for submission progress updates, and another for when
         // the report submission attempt ends
@@ -254,6 +316,7 @@ public class UserReportExample : MonoBehaviour
     {
         if (m_thumbnailViewer != null && thumbnail is not null)
         {
+            Debug.Log("Set thumbnail");
             m_thumbnailViewer.sprite = Sprite.Create(thumbnail, new Rect(0, 0, thumbnail.width, thumbnail.height),
                 new Vector2(0.5F, 0.5F));
             m_thumbnailViewer.preserveAspect = true;
@@ -308,5 +371,6 @@ public class UserReportExample : MonoBehaviour
         m_summaryInput.text = null;
         m_descriptionInput.text = null;
         m_categoryDropdown.value = 0;
+        Thumbnail.texture = null;
     }
 }
