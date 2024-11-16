@@ -214,18 +214,10 @@ public class Player_Information : MonoBehaviour
         if (playerData.TryGetValue("uniqueBirds", out var uni))
         {
             var separate = uni.Value.GetAs<string>().Split(',');
-            Debug.Log("Separate: " + separate);
             foreach(var bird in separate)
             {
                 if(!string.IsNullOrEmpty(bird)) { Unique_Birds_Caught.Add(bird); }
             }
-            Unique_Birds_Caught = new List<string>(tempBirds);
-
-            // var separate = uni.Value.GetAs<string>().Split(',');
-            // foreach(var bird in separate)
-            // {
-            //     Unique_Birds_Caught.Add(bird);
-            // }
         }
 
         if (playerData.TryGetValue("totalAchievements", out var ttl))
