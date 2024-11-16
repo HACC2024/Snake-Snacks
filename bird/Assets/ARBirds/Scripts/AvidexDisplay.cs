@@ -13,7 +13,6 @@ public class AvidexDisplay : MonoBehaviour
 
     public event Action<Avidex> OnEntrySelected;
 
-    // Start is called before the first frame update
     public void SetBirdData(Avidex birdData)
     {
         avidex = birdData;

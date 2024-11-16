@@ -115,19 +115,18 @@ public class Player_Information : MonoBehaviour
         if(!Unique_Birds_Caught.Contains(bird)) { Unique_Birds_Caught.Add(bird); }
     }
 
+    public void Add_Achievement(string achievementID)
+    {
+        if(!Achievements.Contains(achievementID))
+        {
+            Achievements.Add(achievementID);
+        }
+    }
+
     public async void Save_Data()
     {
-        string uniqueBirds = "";
-        foreach(var bird in Unique_Birds_Caught)
-        {
-            uniqueBirds += bird + ",";
-        }
-
-        string totalAchievements = "";
-        foreach(var achieve in Achievements)
-        {
-            totalAchievements += achieve + ",";
-        }
+        string uniqueBirds = string.Join(",", Unique_Birds_Caught);
+        string totalAchievements = string.Join(",", Achievements);
 
         var timeNow = System.DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss,fff");
 
@@ -165,17 +164,8 @@ public class Player_Information : MonoBehaviour
 
     public void Offline_Save()
     {
-        string uniqueBirds = "";
-        foreach (var bird in Unique_Birds_Caught)
-        {
-            uniqueBirds += bird + ",";
-        }
-
-        string totalAchievements = "";
-        foreach (var achieve in Achievements)
-        {
-            totalAchievements += achieve + ",";
-        }
+        string uniqueBirds = string.Join(",", Unique_Birds_Caught);
+        string totalAchievements = string.Join(",", Achievements);
 
         PlayerPrefs.SetString("time", System.DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss,fff"));
         PlayerPrefs.SetString("playerName", Player_Name);
@@ -229,15 +219,24 @@ public class Player_Information : MonoBehaviour
             {
                 if(!string.IsNullOrEmpty(bird)) { Unique_Birds_Caught.Add(bird); }
             }
+            Unique_Birds_Caught = new List<string>(tempBirds);
+
+            // var separate = uni.Value.GetAs<string>().Split(',');
+            // foreach(var bird in separate)
+            // {
+            //     Unique_Birds_Caught.Add(bird);
+            // }
         }
 
         if (playerData.TryGetValue("totalAchievements", out var ttl))
         {
+            HashSet<string> tempAch = new HashSet<string>(Achievements);
             var separate = ttl.Value.GetAs<string>().Split(',');
             foreach (var ach in separate)
             {
                 if (!string.IsNullOrEmpty(ach)) { Achievements.Add(ach); }
             }
+            Achievements = new List<string>(tempAch);
         }
     }
 
@@ -248,17 +247,21 @@ public class Player_Information : MonoBehaviour
         Current_EXP = PlayerPrefs.GetFloat("currentEXP");
         Max_EXP = PlayerPrefs.GetFloat("maxEXP");
 
+        HashSet<string> tempBirds = new HashSet<string>(Unique_Birds_Caught);
         var separate = PlayerPrefs.GetString("uniqueBirds").Split(',');
         foreach(var bird in separate)
         {
-            Unique_Birds_Caught.Add((bird));
+            tempBirds.Add(bird);
         }
+        Unique_Birds_Caught = new List<string>(tempBirds);
 
+        HashSet<string> tempAch = new HashSet<string>(Achievements);
         separate = PlayerPrefs.GetString("totalAchievements").Split(',');
         foreach(var ach in separate)
         {
-            Achievements.Add((ach));
+            tempAch.Add(ach);
         }
+        Achievements = new List<string>(tempAch);
     }
 
     private void OnApplicationPause(bool pause)

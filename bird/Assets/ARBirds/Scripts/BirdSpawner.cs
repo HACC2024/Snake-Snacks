@@ -17,6 +17,7 @@ public class BirdSpawner : MonoBehaviour
     private List<GameObject> spawnedObjects = new List<GameObject>();  // List to track spawned objects
     private GameObject player;           // Reference to the player GameObject
     public RegionChecker ecoCheck;
+    private bool sorted = false;
 
     void Start()
     {
@@ -26,7 +27,7 @@ public class BirdSpawner : MonoBehaviour
 
     void Update()
     {
-        if(spawnedObjects.Count == 0)
+        if(spawnedObjects.Count == 0 && sorted == true)
         {
             // Randomly determine how many objects to spawn
             int numberOfObjects = Random.Range(minSpawn, maxSpawn);
@@ -88,7 +89,7 @@ public class BirdSpawner : MonoBehaviour
         Vector2 randomPoint = Random.insideUnitCircle * radius;
 
         // Convert the 2D random point to 3D, relative to the player's position
-        Vector3 spawnPosition = new Vector3(randomPoint.x, 0, randomPoint.y) + player.transform.position;
+        Vector3 spawnPosition = new Vector3(randomPoint.x, 2, randomPoint.y) + player.transform.position;
 
         return spawnPosition;
     }
@@ -131,5 +132,6 @@ public class BirdSpawner : MonoBehaviour
                     break;
             }
         }
+        sorted = true;
     }
 }

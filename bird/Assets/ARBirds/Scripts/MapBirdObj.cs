@@ -54,9 +54,12 @@ public class MapBirdObj : MonoBehaviour
     {
         if(scene.name == "GPSTesting")
         {
-            birdEntry.Found = true;
             var PlayerInfo = GameObject.Find("--------Player Information---------").GetComponent<Player_Information>();
-            PlayerInfo.Add_Bird(birdEntry.Name);
+            if(birdEntry.Found == false)
+            {
+                PlayerInfo.Add_Bird(birdEntry.Name);
+                birdEntry.Found = true;
+            }
             bsm.selectedBird = birdEntry;
             SceneManager.LoadScene("AR_Bird");
         }
