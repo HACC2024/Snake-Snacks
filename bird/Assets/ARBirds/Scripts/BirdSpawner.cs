@@ -17,6 +17,7 @@ public class BirdSpawner : MonoBehaviour
     private List<GameObject> spawnedObjects = new List<GameObject>();  // List to track spawned objects
     private GameObject player;           // Reference to the player GameObject
     public RegionChecker ecoCheck;
+    private bool sorted = false;
 
     void Start()
     {
@@ -26,7 +27,7 @@ public class BirdSpawner : MonoBehaviour
 
     void Update()
     {
-        if(spawnedObjects.Count == 0)
+        if(spawnedObjects.Count == 0 && sorted == true)
         {
             // Randomly determine how many objects to spawn
             int numberOfObjects = Random.Range(minSpawn, maxSpawn);
@@ -131,5 +132,6 @@ public class BirdSpawner : MonoBehaviour
                     break;
             }
         }
+        sorted = true;
     }
 }

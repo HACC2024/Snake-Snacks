@@ -14,12 +14,14 @@ public class ProfileDisplay : MonoBehaviour
     public TMP_Text totalAchieved;
     public GameObject profileUI;
     public Player_Information playerInfo;
+    public AchievementManager achMan;
     private bool toggle = true;
 
 
     void Start()
     {
         SetInfo();
+        achMan.PopulateAchievements();
         ToggleUI();
         playerInfo = GameObject.Find("--------Player Information---------").GetComponent<Player_Information>();
     }
