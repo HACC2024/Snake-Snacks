@@ -25,19 +25,32 @@
 
 		List<GameObject> _spawnedObjects;
 
-		void Start()
+		public Marker_Obj[] _markers;
+
+        void Start()
 		{
 			_locations = new Vector2d[_locationStrings.Length];
 			_spawnedObjects = new List<GameObject>();
-			for (int i = 0; i < _locationStrings.Length; i++)
+			//for (int i = 0; i < _locationStrings.Length; i++)
+			//{
+			//	var locationString = _locationStrings[i];
+			//	_locations[i] = Conversions.StringToLatLon(locationString);
+			//	var instance = Instantiate(_markerPrefab);
+			//	instance.transform.localPosition = _map.GeoToWorldPosition(_locations[i], true);
+			//	instance.transform.localScale = new Vector3(_spawnScale, _spawnScale, _spawnScale);
+			//	_spawnedObjects.Add(instance);
+			//}
+
+			for(int i = 0; i<_markers.Length; i++)
 			{
-				var locationString = _locationStrings[i];
+				var locationString = _markers[i].LatLong;
 				_locations[i] = Conversions.StringToLatLon(locationString);
 				var instance = Instantiate(_markerPrefab);
-				instance.transform.localPosition = _map.GeoToWorldPosition(_locations[i], true);
-				instance.transform.localScale = new Vector3(_spawnScale, _spawnScale, _spawnScale);
-				_spawnedObjects.Add(instance);
-			}
+				instance.GetComponent<Marker_Interaction>().Event_Details = _markers[i];
+                instance.transform.localPosition = _map.GeoToWorldPosition(_locations[i], true);
+                instance.transform.localScale = new Vector3(_spawnScale, _spawnScale, _spawnScale);
+                _spawnedObjects.Add(instance);
+            }
 		}
 
 		private void Update()

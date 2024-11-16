@@ -37,3 +37,13 @@ MonoBehaviour:
     m_SpecifySize: 1
     m_Name: kingheart
     m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5386489021752829711
+      m_GuidHigh: 2448277143514853278
+    m_SerializedTextureGuid:
+      m_GuidLow: 14412699081779452039
+      m_GuidHigh: 17068576620062227722
+    m_Size: {x: 0.15, y: 0.06089109}
+    m_SpecifySize: 1
+    m_Name: HACC-with-Flag-final-1
+    m_Texture: {fileID: 0}
